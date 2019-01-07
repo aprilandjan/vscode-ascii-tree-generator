@@ -1,6 +1,10 @@
 # ascii tree generator
 
-在 VSCode 中，生成 ascii tree 的插件。
+A VSCode plugin to generate/format ascii tree for files and directories.
+
+## Working In Progress
+
+This plugin is currently working in progress.
 
 ## 使用方式
 
@@ -57,6 +61,7 @@ root
 
 ### 参考
 
+- https://en.wikipedia.org/wiki/Tree_(command)
 - <https://stackoverflow.com/questions/19699059/representing-directory-file-structure-in-markdown-syntax>
 - <https://code.visualstudio.com/api/get-started/wrapping-up>
 - <https://github.com/mbr/asciitree>
