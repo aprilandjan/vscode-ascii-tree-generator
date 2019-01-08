@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <button id="btnCopy">Copy</button>
+    </div>
+    <div>
+      <textarea id="content"></textarea>
+    </div>
+  </div>
+  <script>
+    (() => {
+      //  this vscode object cannot be exposed in global context
+      const vscode = acquireVsCodeApi();
+      const content = document.querySelector('#content');
+
+      // Handle the message inside the webview
+      window.addEventListener('message', event => {
+        const message = event.data; // The JSON data our extension sent
+        switch (message.command) {
+          case 'refactor':
+            content.value = message.payload;
+            break;
+        }
+      });
+
+      document.querySelector('#btnCopy').addEventListener('click', () => {
+        vscode.postMessage({
+          command: 'copy',
+          payload: 'Just want to copy it...',
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
