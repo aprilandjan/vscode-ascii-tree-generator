@@ -1,7 +1,7 @@
 import { IFileTreeItem, ICharset, IFormatOptions } from './interface';
 
 const defaultCharset: ICharset = {
-  root: String.fromCharCode(46), // '.',
+  // root: String.fromCharCode(46), // '.',
   child: String.fromCharCode(9500), // '├',
   last: String.fromCharCode(9492), // '└',
   parent: String.fromCharCode(9474), // '|',
@@ -21,9 +21,10 @@ function createTreeString (start: string, fill: string, size: number = 3) {
   return result + ' ';
 }
 
-/** format files */
-export function format (items: IFileTreeItem[], options: IFormatOptions = {}) {
+/** generate tree strings */
+export function generate (items: IFileTreeItem[], options: IFormatOptions = {}) {
   const {
+    root = '.',
     eol = '\n',
     charset = defaultCharset,
   } = options;
@@ -43,6 +44,6 @@ export function format (items: IFileTreeItem[], options: IFormatOptions = {}) {
     }
     return texts.join('') + item.name;
   });
-  lines.unshift(charset.root);
+  lines.unshift(root);
   return lines.join(eol);
 }

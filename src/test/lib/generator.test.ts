@@ -2,21 +2,35 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { listDirectory, formatFileTreeItems } from '../../lib/directory';
-import { format } from '../../lib/generator';
+import { formatFileTreeItemsFromDirectory } from '../../lib/directory';
+import { formatFileTreeItemsFromText } from '../../lib/text';
+import { generate } from '../../lib/generator';
 
-suite('lib/format functions', function () {
+suite('lib/generator functions', function () {
   this.timeout(120000);
 
   const rootDir: string = path.resolve(__dirname, '../../../fixtures/root');
   const rootText = fs.readFileSync(path.join(__dirname, '../../../fixtures/root.txt'), 'utf8');
-
-  test('should correctly format tree from directory', async () => {
-    const files = await listDirectory(rootDir, {
+  
+  test('should correctly generate tree from directory', async () => {
+    const items = await formatFileTreeItemsFromDirectory(rootDir, {
       maxDepth: Number.MAX_VALUE,
     });
-    const fileItems = formatFileTreeItems(files);
-    const treeText = format(fileItems).trim();
+    const treeText = generate(items);
+    assert(treeText.trim() === rootText.trim());
+  });
+
+  test('should correctly generate tree from hash text', () => {
+    const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash.txt'), 'utf8');
+    const items = formatFileTreeItemsFromText(text);
+    const treeText = generate(items);
+    assert(treeText.trim() === rootText.trim());
+  });
+
+  test('should correctly generate tree from indent text', () => {
+    const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/indent.txt'), 'utf8');
+    const items = formatFileTreeItemsFromText(text);
+    const treeText = generate(items);
     assert(treeText.trim() === rootText.trim());
   });
 });

@@ -79,9 +79,10 @@ export async function listDirectory(dir: string, config?: IListDirectoryConfig):
   return files;
 }
 
-export function formatFileTreeItems(files: IFileStat[] = []) {
+export async function formatFileTreeItemsFromDirectory(dir: string, config?: IListDirectoryConfig) {
+  const files = await listDirectory(dir, config);
+
   const allList: IFileTreeItem[] = [];
-  // const listMap = [];
   function traverseTree(list: IFileStat[], parent?: IFileTreeItem) {
     list.forEach((f, index) => {
       const item = {

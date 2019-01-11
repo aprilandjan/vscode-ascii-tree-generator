@@ -1,6 +1,6 @@
 import { IFileTreeItem } from "./interface";
 
-export function formatFileTreeItems (text: string = ''): IFileTreeItem[] {
+export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[] {
   //  split selected text into separate lines
   //  empty lines are ignored
   const lines = text.split('\n').filter(line => line.trim() !== '');

@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import * as path from 'path';
 
-import { listDirectory, formatFileTreeItems } from '../../lib/directory';
+import { listDirectory, formatFileTreeItemsFromDirectory } from '../../lib/directory';
 import { IFileStat } from '../../lib/interface';
 
 function findFileByName(files: IFileStat[] = [], name: string) {
@@ -64,11 +64,10 @@ suite("lib/directory functions", function () {
   });
 
   test('should correctly format file tree items', async () => {
-    const files = await listDirectory(rootDir, {
+    const fileItems = await formatFileTreeItemsFromDirectory(rootDir, {
       maxDepth: Number.MAX_VALUE,
       sort: true,
     });
-    const fileItems = formatFileTreeItems(files);
     assert(fileItems.length === 16);
     const logo = fileItems.find(item => item.name === 'logo.jpg');
     assert(logo!.depth === 3);

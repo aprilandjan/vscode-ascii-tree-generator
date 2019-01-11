@@ -24,7 +24,6 @@ export interface IFileTreeItem {
 
 //  the charset interface
 export interface ICharset {
-  root: string;
   child: string;
   last: string;
   parent: string;
@@ -34,6 +33,7 @@ export interface ICharset {
 
 //  format tree string options
 export interface IFormatOptions {
+  root?: string;
   charset?: ICharset;
   eol?: '\n' | '\r\n';
 }

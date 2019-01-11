@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { formatFileTreeItems } from '../../lib/text';
+import { formatFileTreeItemsFromText } from '../../lib/text';
 import { IFileTreeItem } from '../../lib/interface';
 
 function findTreeItem (list: IFileTreeItem[] , name: string) {
@@ -16,7 +16,7 @@ suite('lib/text functions', function () {
     let items: IFileTreeItem[];
     setup(function() {
       const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash.txt'), 'utf8');
-      items = formatFileTreeItems(text);
+      items = formatFileTreeItemsFromText(text);
     });
 
     test('should correctly format no-parent non-last file', () => {
@@ -45,7 +45,7 @@ suite('lib/text functions', function () {
     let items: IFileTreeItem[];
     setup(() => {
       const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/indent.txt'), 'utf8');
-      items = formatFileTreeItems(text);
+      items = formatFileTreeItemsFromText(text);
     });
 
     test('should correctly format no-parent non-last file', () => {
