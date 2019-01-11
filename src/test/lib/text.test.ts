@@ -3,19 +3,70 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { formatFileTreeItems } from '../../lib/text';
-import { format } from '../../lib/generator';
+import { IFileTreeItem } from '../../lib/interface';
+
+function findTreeItem (list: IFileTreeItem[] , name: string) {
+  return list.find(item => item.name === name);
+}
 
 suite('lib/text functions', function () {
   this.timeout(120000);
-  
-  const input = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash.txt'), 'utf8');
 
-  test('should correctly format file tree items from text', async () => {
-    // Todo: improve test case
-    const result = formatFileTreeItems(input);
-    assert(result);
+  suite('parse from hash text', () => {
+    let items: IFileTreeItem[];
+    setup(function() {
+      const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash.txt'), 'utf8');
+      items = formatFileTreeItems(text);
+    });
 
-    const output = format(result);
-    assert(output);
+    test('should correctly format no-parent non-last file', () => {
+      const dist = findTreeItem(items, 'dist');
+      assert(dist && dist.isLast === false && !dist.parent);
+    });
+
+    test('should correctly format no-parent last file', () => {
+      const src = findTreeItem(items, 'src');
+      assert(src && src.isLast === true && !src.parent);
+    });
+
+    test('should correctly format has-parent non-last file', () => {  
+      const dist = findTreeItem(items, 'dist');
+      const assets = findTreeItem(items, 'assets');
+      assert(assets && assets.isLast === false && assets.parent === dist);
+    });
+
+    test('should correctly format has-parent last file', () => {
+      const logo = findTreeItem(items, 'logo.jpg');
+      assert(logo && logo.isLast === true && logo.parent);
+    });
+  });
+
+  suite('parse from indent text', () => {
+    let items: IFileTreeItem[];
+    setup(() => {
+      const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/indent.txt'), 'utf8');
+      items = formatFileTreeItems(text);
+    });
+
+    test('should correctly format no-parent non-last file', () => {
+      const dist = findTreeItem(items, 'dist');
+      assert(dist && dist.isLast === false && !dist.parent);
+    });
+
+    test('should correctly format no-parent last file', () => {
+      const src = findTreeItem(items, 'src');
+      assert(src && src.isLast === true && !src.parent);
+    });
+
+    test('should correctly format has-parent non-last file', () => {  
+      const dist = findTreeItem(items, 'dist');
+      const assets = findTreeItem(items, 'assets');
+      assert(assets && assets.isLast === false && assets.parent === dist);
+    });
+
+    test('should correctly format has-parent last file', () => {
+      const logo = findTreeItem(items, 'logo.jpg');
+      assert(logo && logo.isLast === true && logo.parent);
+    });
   });
 });
