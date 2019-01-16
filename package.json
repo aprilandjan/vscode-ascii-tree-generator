@@ -10,17 +10,50 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.asciiTreeGenerator"
+		"onCommand:extension.asciiTreeGenerator",
+		"onCommand:extension.asciiTreeGeneratorFromDirectory",
+		"onCommand:extension.asciiTreeGeneratorFromText"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.asciiTreeGenerator",
-				"title": "Generate ascii tree for current directory",
+				"title": "Generate tree",
+				"category": "Ascii Tree Generator"
+			},
+			{
+				"command": "extension.asciiTreeGeneratorFromDirectory",
+				"title": "Generate tree from directory",
+				"category": "Ascii Tree Generator"
+			},
+			{
+				"command": "extension.asciiTreeGeneratorFromText",
+				"title": "Generate tree from text",
 				"category": "Ascii Tree Generator"
 			}
-		]
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "extension.asciiTreeGenerator",
+					"group": "navigation",
+					"when": "explorerResourceIsFolder"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "extension.asciiTreeGeneratorFromDirectory",
+					"group": "7_modification"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "extension.asciiTreeGeneratorFromText",
+					"group": "1_modification"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
