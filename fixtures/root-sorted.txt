@@ -1,0 +1,17 @@
+.
+├── dist
+│   ├── assets
+│   │   └── img
+│   │       └── logo.jpg
+│   ├── app.js
+│   └── index.js
+├── node_modules
+│   └── .gitkeep
+├── src
+│   ├── assets
+│   │   └── img
+│   │       └── logo.jpg
+│   ├── app.js
+│   └── index.js
+├── .env
+└── README.md

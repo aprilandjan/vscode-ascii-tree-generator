@@ -1,4 +1,5 @@
 import { IFileTreeItem, ICharset, IFormatOptions } from './interface';
+import { getUserEOL } from '../utils';
 
 const defaultCharset: ICharset = {
   // root: String.fromCharCode(46), // '.',
@@ -25,7 +26,7 @@ function createTreeString (start: string, fill: string, size: number = 3) {
 export function generate (items: IFileTreeItem[], options: IFormatOptions = {}) {
   const {
     root = '.',
-    eol = '\n',
+    eol = getUserEOL(),
     charset = defaultCharset,
   } = options;
   const lines = items.map(item => {

@@ -11,13 +11,15 @@ suite('lib/generator functions', function () {
 
   const rootDir: string = path.resolve(__dirname, '../../../fixtures/root');
   const rootText = fs.readFileSync(path.join(__dirname, '../../../fixtures/root.txt'), 'utf8');
+  const rootSorted = fs.readFileSync(path.join(__dirname, '../../../fixtures/root-sorted.txt'), 'utf8');
   
   test('should correctly generate tree from directory', async () => {
     const items = await formatFileTreeItemsFromDirectory(rootDir, {
       maxDepth: Number.MAX_VALUE,
+      sort: true,
     });
     const treeText = generate(items);
-    assert(treeText.trim() === rootText.trim());
+    assert(treeText.trim() === rootSorted.trim());
   });
 
   test('should correctly generate tree from hash text', () => {

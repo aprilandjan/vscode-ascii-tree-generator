@@ -1,10 +1,10 @@
 # ascii tree generator
 
-A VS Code plugin to generate/format ascii tree for files and directories.
+A VS Code plugin to generate ascii tree of directories or formatting selected text to tree strings.
 
 ## Working In Progress
 
-This plugin is currently working in progress.
+This plugin is currently working in progress, not avaiable in market yet.
 
 ## Usage
 
@@ -14,14 +14,12 @@ This plugin is currently working in progress.
 
 ## Configuration
 
-- 自动排序。开启之后会手动排序一次（和 VSCode 的文件排序规则相同）。默认否，和原输入行的顺序保持一致；
-- 文件忽略列表。当生成当前项目目录时，默认忽略以下文件(参考 https://docs.npmjs.com/misc/developers)
-  - `.git`
-  - `node_modules`
-  - `.svn`
-  - `.DS_Store`
-- 最大层级深度。当生成当前项目目录时，从根目录开始，默认的文件层级深度。默认为3层。设为0不限制；
-- ascii 字符样式。提供自定义的可能。
+|key|default|description|
+|---|---|---|
+|sort|true||
+|ignore|||
+|maxDepth|Number.MAX_VALUE||
+|charset|||
 
 ## Supported text format
 
@@ -36,7 +34,7 @@ src
   index.ts
 ```
 
-### text with `hash(`#`)` symbol
+### text with `hash(#)` symbol
 
 ```
 # public
@@ -47,9 +45,10 @@ src
 ## index.ts
 ```
 
-### Todo
+## Todo
 
-- formatFromText: read current user selected texts
+- ~formatFromText: read current user selected texts~
+- disable command panel command
 - read user configuration
 - formatFromDirectory: add 'copy to clipboard' button in webview
 - clear up all message box informations

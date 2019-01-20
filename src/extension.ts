@@ -18,20 +18,15 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 	
 	registerCommand('extension.asciiTreeGenerator', async (resource: any) => {
-		// Todo: if currently not opened with some directory, give message
-		if (Math.random() > 1) {
-			vscode.window.showWarningMessage('Ascii Tree Generator need to when opened with directory');
-			return;
-		}
 		// Create and show a new webview
-		const panel = vscode.window.createWebviewPanel(
-			'AsciiTreeGenerator', // Identifies the type of the webview. Used internally
-			'Ascii Tree', // Title of the panel displayed to the user
-			vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-			{
-				enableScripts: true,
-			}
-		);
+		// const panel = vscode.window.createWebviewPanel(
+		// 	'AsciiTreeGenerator', // Identifies the type of the webview. Used internally
+		// 	'Ascii Tree', // Title of the panel displayed to the user
+		// 	vscode.ViewColumn.One, // Editor column to show the new webview panel in.
+		// 	{
+		// 		enableScripts: true,
+		// 	}
+		// );
 
 		//	listen webview messages
 		// panel.webview.onDidReceiveMessage(message => {
@@ -46,19 +41,6 @@ export function activate(context: vscode.ExtensionContext) {
 		// And set its HTML content
 		// Todo: create current project folder
 		// panel.webview.html = fs.readFileSync(path.join(__dirname, '../static/webview.html'), 'utf8');
-
-		const workspaces = vscode.workspace.workspaceFolders;
-		const root = workspaces ? workspaces[0] : undefined;
-		if (!root) {
-			// Todo: give message box
-			console.log('no root found');
-			return;
-		}
-		const items = await formatFileTreeItemsFromDirectory(root.uri.fsPath);
-		const text = generate(items, {
-			eol: '\r\n',
-		});
-		panel.webview.html = `<pre>${text}</pre>`;
 	});
 	
 	//	create ascii tree from directory
@@ -98,7 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showWarningMessage('No text selected!');
 			return;
 		}
-		//	find whole lines where selection range locates
+		//	find and select lines where current selection range locates
 		const start = editor.selection.start.line;
 		const end = editor.selection.end.line;
 		const endLineSize = editor.document.lineAt(end).text.length;
@@ -109,11 +91,12 @@ export function activate(context: vscode.ExtensionContext) {
 		));
 		editor.selection = new vscode.Selection(range.start, range.end);
 
+		//	generate text and replace...
 		const rawText = editor.document.getText(range);
 		const items = formatFileTreeItemsFromText(rawText);
 		const text = generate(items, {
 			eol: editor.document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n',
-			// Todo: read configurations
+			// Todo: read plugin configurations
 		});
 		editor.edit((edit) => {
 			edit.replace(editor.selection, text);

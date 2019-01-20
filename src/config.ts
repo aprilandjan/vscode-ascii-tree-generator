@@ -1,5 +1,5 @@
 export const config = {
-  excludes: [
+  ingore: [
     'node_modules'
   ]
 };
