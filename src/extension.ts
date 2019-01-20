@@ -6,6 +6,7 @@ import * as path from 'path';
 import { formatFileTreeItemsFromDirectory } from './lib/directory';
 import { generate } from './lib/generator';
 import { getUserEOL } from './utils';
+import { formatFileTreeItemsFromText } from './lib/text';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "ascii-tree-generator" is now active!');
@@ -89,6 +90,34 @@ export function activate(context: vscode.ExtensionContext) {
 			root,
 		});
 		panel.webview.html = `<pre>${text}</pre>`;
+	});
+
+	registerCommand('extension.asciiTreeGeneratorFromText', async (resource: any) => {
+		const editor = vscode.window.activeTextEditor;
+		if (!editor || editor.selection.isEmpty) {
+			vscode.window.showWarningMessage('No text selected!');
+			return;
+		}
+		//	find whole lines where selection range locates
+		const start = editor.selection.start.line;
+		const end = editor.selection.end.line;
+		const endLineSize = editor.document.lineAt(end).text.length;
+
+		const range = editor.document.validateRange(new vscode.Range(
+			new vscode.Position(start, 0),
+			new vscode.Position(end, endLineSize),
+		));
+		editor.selection = new vscode.Selection(range.start, range.end);
+
+		const rawText = editor.document.getText(range);
+		const items = formatFileTreeItemsFromText(rawText);
+		const text = generate(items, {
+			eol: editor.document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n',
+			// Todo: read configurations
+		});
+		editor.edit((edit) => {
+			edit.replace(editor.selection, text);
+		});
 	});
 }
 

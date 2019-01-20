@@ -29,7 +29,7 @@
 			},
 			{
 				"command": "extension.asciiTreeGeneratorFromText",
-				"title": "Generate tree from text",
+				"title": "Generate tree from selected lines",
 				"category": "Ascii Tree Generator"
 			}
 		],
@@ -50,7 +50,8 @@
 			"editor/context": [
 				{
 					"command": "extension.asciiTreeGeneratorFromText",
-					"group": "1_modification"
+					"group": "1_modification",
+					"when": "editorHasSelection"
 				}
 			]
 		}

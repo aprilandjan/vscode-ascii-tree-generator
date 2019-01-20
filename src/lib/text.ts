@@ -20,7 +20,7 @@ export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[]
     let hash = matched[0];
     let depth = hash.length;
     let prev = list[index - 1];
-    let name = line.slice(depth).trimLeft();
+    let name = line.slice(depth).trim();
     if (depth === 0) {
       depth = 1;
     }

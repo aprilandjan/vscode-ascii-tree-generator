@@ -47,6 +47,14 @@ src
 ## index.ts
 ```
 
+### Todo
+
+- formatFromText: read current user selected texts
+- read user configuration
+- formatFromDirectory: add 'copy to clipboard' button in webview
+- clear up all message box informations
+- i18n
+
 ### VS Code Reference
 
 - [api reference](https://code.visualstudio.com/api/references/vscode-api#Uri)
