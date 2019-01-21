@@ -77,7 +77,7 @@ export function activate(context: vscode.ExtensionContext) {
 	registerCommand('extension.asciiTreeGeneratorFromText', async (resource: any) => {
 		const editor = vscode.window.activeTextEditor;
 		if (!editor || editor.selection.isEmpty) {
-			vscode.window.showWarningMessage('No text selected!');
+			vscode.window.showWarningMessage('No text selected. Please select text in editor before generating Tree Strings!');
 			return;
 		}
 		//	find and select lines where current selection range locates

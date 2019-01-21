@@ -19,17 +19,17 @@
 		"commands": [
 			{
 				"command": "extension.asciiTreeGenerator",
-				"title": "Generate tree",
+				"title": "Generate Tree",
 				"category": "Ascii Tree Generator"
 			},
 			{
 				"command": "extension.asciiTreeGeneratorFromDirectory",
-				"title": "Generate tree from directory",
+				"title": "Generate Tree Strings for Directory",
 				"category": "Ascii Tree Generator"
 			},
 			{
 				"command": "extension.asciiTreeGeneratorFromText",
-				"title": "Generate tree from selected lines",
+				"title": "Format Text to Tree Strings",
 				"category": "Ascii Tree Generator"
 			}
 		],
@@ -38,7 +38,7 @@
 				{
 					"command": "extension.asciiTreeGenerator",
 					"group": "navigation",
-					"when": "explorerResourceIsFolder"
+					"when": "false"
 				}
 			],
 			"explorer/context": [
