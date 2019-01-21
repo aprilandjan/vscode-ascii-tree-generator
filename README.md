@@ -4,13 +4,55 @@ A VS Code plugin to generate ascii tree of directories or formatting selected te
 
 ## Working In Progress
 
-This plugin is currently working in progress, not avaiable in market yet.
+This plugin is currently working in progress and not available in market yet.
 
 ## Usage
 
-### Workspace
+This plugin provide convenient way to generate ascii tree strings for directory in workspace explorer. Besides, you can select text in editor and format it to tree strings easily.
 
-### TextEditor
+### Generate Tree Strings for Directory
+
+Right click on `Explorer` directories, click `Generate Tree Strings for Directory` menu:
+
+### Format Text to Tree Strings
+
+Write simple tree lines in certain syntax (see example below), select these lines, right-click and choose `Format Text to Tree Strings`:
+
+The following kinds of line syntax is supported to correctly format to tree strings:
+
+- lines started with `indent(space or tab)` characters:
+  
+  ```
+  public
+  dist
+    index.d.ts
+    index.js
+  src
+    index.ts
+  ```
+
+- line started with `hash(#)` symbol
+
+  ```
+  # public
+  # dist
+  ## index.d.ts
+  ## index.js
+  # src
+  ## index.ts
+  ```
+
+They should be formatted to:
+
+```
+.
+├── public
+├── dist
+│   ├── index.d.ts
+│   └── index.js
+└── src
+    └── index.ts
+```
 
 ## Configuration
 
@@ -21,36 +63,13 @@ This plugin is currently working in progress, not avaiable in market yet.
 |maxDepth|Number.MAX_VALUE||
 |charset|||
 
-## Supported text format
-
-### text with `indent`
-
-```
-public
-dist
-  index.d.ts
-  index.js
-src
-  index.ts
-```
-
-### text with `hash(#)` symbol
-
-```
-# public
-# dist
-## index.d.ts
-## index.js
-# src
-## index.ts
-```
-
 ## Todo
 
 - ~formatFromText: read current user selected texts~
-- disable command panel command
+- ~disable command panel command~
 - read user configuration
 - formatFromDirectory: add 'copy to clipboard' button in webview
+- formatFromDirectory: webview font and line style in webview
 - clear up all message box informations
 - i18n
 
