@@ -47,7 +47,7 @@
 			"explorer/context": [
 				{
 					"command": "extension.asciiTreeGeneratorFromDirectory",
-					"group": "7_modification"
+					"group": "navigation"
 				}
 			],
 			"editor/context": [
