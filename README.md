@@ -68,9 +68,7 @@ They should be formatted to:
 - ~formatFromText: read current user selected texts~
 - ~disable command panel command~
 - read user configuration
-- formatFromDirectory: add 'copy to clipboard' button in webview
-- formatFromDirectory: webview font and line style in webview
-- clear up all message box informations
+- ~formatFromDirectory: add 'copy to clipboard' button in webview~
 - i18n
 
 ### VS Code Reference
