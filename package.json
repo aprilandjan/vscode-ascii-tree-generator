@@ -1,16 +1,25 @@
 {
 	"name": "ascii-tree-generator",
-	"displayName": "ascii-tree-generator",
+	"displayName": "Ascii Tree Generator",
 	"description": "A VS Code plugin to generate ascii tree of directories or formatting selected text to tree strings.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
 	"categories": [
+		"Formatters",
 		"Other"
 	],
-	"author": "aprilandjan",
+	"publisher": "merlin.ye",
+	"license": "SEE LICENSE IN LICENSE",
+	"icon": "images/icon.png",
+	"galleryBanner": {
+		"color": "#c8c8c8",
+		"theme": "dark"
+	},
+	"author": "merlin.ye",
 	"repository": {
+		"type": "git",
 		"url": "https://github.com/aprilandjan/ascii-tree-generator"
 	},
 	"activationEvents": [

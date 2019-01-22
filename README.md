@@ -14,13 +14,13 @@ This plugin provide convenient way to generate ascii tree strings for directory 
 
 Right click on `Explorer` directories, click `Generate Tree Strings for Directory` menu:
 
-![Generate Tree Strings for Directory](./static/directory.gif)
+![Generate Tree Strings for Directory](./images/directory.gif)
 
 ### Format Text to Tree Strings
 
 Write simple tree lines in certain syntax (see example below), select these lines, right-click and choose `Format Text to Tree Strings`:
 
-![Format Text to Tree Strings](./static/text.gif)
+![Format Text to Tree Strings](./images/text.gif)
 
 The following kinds of line syntax is supported to correctly format to tree strings:
 

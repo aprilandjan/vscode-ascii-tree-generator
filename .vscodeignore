@@ -1,6 +1,7 @@
 .vscode/**
 .vscode-test/**
 out/test/**
+fixtures/**
 src/**
 .gitignore
 vsc-extension-quickstart.md
