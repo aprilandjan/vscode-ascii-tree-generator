@@ -9,6 +9,10 @@
 	"categories": [
 		"Other"
 	],
+	"author": "aprilandjan",
+	"repository": {
+		"url": "https://github.com/aprilandjan/ascii-tree-generator"
+	},
 	"activationEvents": [
 		"onCommand:extension.asciiTreeGenerator",
 		"onCommand:extension.asciiTreeGeneratorFromDirectory",
