@@ -10,17 +10,26 @@ export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[]
   lines.reduce((list, line, index) => {
     //  iterate through each line
     //  line start with hash: /^#+/
-    //  line start with indent /^[\t ]*/
-    const matched = line.match(/(^#+)|(^[\t ]*)/);
+    //  line start with indent: /^[\t ]*/
+    //  line start with indent + hash: /^[\t ]*#*/
+    const matched = line.match(/^[\t ]*#*/);
 
     if (!matched) {
       return list;
     }
     let item: IFileTreeItem;
-    let hash = matched[0];
-    let depth = hash.length;
+    //  symbol
+    let symbol = matched[0];
+    let name = line.slice(symbol.length).trim();
+    let hash = symbol.match(/#+/);
+    let left = 0;
+    //  if contains hash, read hash as its depth symbol
+    if (hash) {
+      left = symbol.length - hash[0].length;
+      symbol = hash[0];
+    }
+    let depth = symbol.length;
     let prev = list[index - 1];
-    let name = line.slice(depth).trim();
     if (depth === 0) {
       depth = 1;
     }
@@ -74,6 +83,7 @@ export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[]
       };
     }
 
+    item.left = left;
     list.push(item);
     return list;
   }, items);

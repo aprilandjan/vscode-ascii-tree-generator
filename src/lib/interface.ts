@@ -19,6 +19,8 @@ export interface IFileTreeItem {
   name: string;
   isLast: boolean;
   depth: number;
+  // left space width
+  left?: number;
   parent?: IFileTreeItem;
 }
 
@@ -33,6 +35,7 @@ export interface ICharset {
 
 //  format tree string options
 export interface IFormatOptions {
+  fillLeft?: boolean;
   root?: string;
   charset?: ICharset;
   eol?: '\n' | '\r\n';
