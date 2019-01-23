@@ -2,16 +2,6 @@
 
 ## Todo
 
-### Format Improvement
-
-improve format for text like:
-
-```
-  # abc
-  ## def
-  ## g
-```
-
 ### Plugin Configuration
 
 |key|default|description|

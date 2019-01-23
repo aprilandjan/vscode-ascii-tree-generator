@@ -28,7 +28,13 @@ export function generate (items: IFileTreeItem[], options: IFormatOptions = {}) 
     root = '.',
     eol = getUserEOL(),
     charset = defaultCharset,
+    fillLeft = true,
   } = options;
+  let leftSpace = '';
+  if (fillLeft) {
+    const minLeft = Math.min(...items.map(item => item.left || 0));
+    leftSpace = Array(minLeft).fill(' ').join('');
+  }
   const lines = items.map(item => {
     const texts: string[] = [];
     texts.push(createTreeString(
@@ -43,8 +49,10 @@ export function generate (items: IFileTreeItem[], options: IFormatOptions = {}) 
       ));
       parent = parent.parent;
     }
-    return texts.join('') + item.name;
+    return leftSpace + texts.join('') + item.name;
   });
-  lines.unshift(root);
+  if (root !== '') {
+    lines.unshift(leftSpace + root);
+  }
   return lines.join(eol);
 }

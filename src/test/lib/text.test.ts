@@ -69,4 +69,39 @@ suite('lib/text functions', function () {
       assert(logo && logo.isLast === true && logo.parent);
     });
   });
+
+  suite('parse from hash-indented text', () => {
+    let items: IFileTreeItem[];
+    setup(() => {
+      const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash-indented.txt'), 'utf8');
+      items = formatFileTreeItemsFromText(text);
+    });
+
+    test('should correctly format item names', () => {
+      const first = items[0];
+      const env = findTreeItem(items, '.env');
+      assert(first === env);
+    });
+
+    test('should correctly format no-parent non-last file', () => {
+      const dist = findTreeItem(items, 'dist');
+      assert(dist && dist.isLast === false && !dist.parent);
+    });
+
+    test('should correctly format no-parent last file', () => {
+      const src = findTreeItem(items, 'src');
+      assert(src && src.isLast === true && !src.parent);
+    });
+
+    test('should correctly format has-parent non-last file', () => {  
+      const dist = findTreeItem(items, 'dist');
+      const assets = findTreeItem(items, 'assets');
+      assert(assets && assets.isLast === false && assets.parent === dist);
+    });
+
+    test('should correctly format has-parent last file', () => {
+      const logo = findTreeItem(items, 'logo.jpg');
+      assert(logo && logo.isLast === true && logo.parent);
+    });
+  });
 });

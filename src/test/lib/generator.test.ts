@@ -12,6 +12,7 @@ suite('lib/generator functions', function () {
   const rootDir: string = path.resolve(__dirname, '../../../fixtures/root');
   const rootText = fs.readFileSync(path.join(__dirname, '../../../fixtures/root.txt'), 'utf8');
   const rootSorted = fs.readFileSync(path.join(__dirname, '../../../fixtures/root-sorted.txt'), 'utf8');
+  const rootFillLeft = fs.readFileSync(path.join(__dirname, '../../../fixtures/root-fill-left.txt'), 'utf8');
   
   test('should correctly generate tree from directory', async () => {
     const items = await formatFileTreeItemsFromDirectory(rootDir, {
@@ -34,5 +35,21 @@ suite('lib/generator functions', function () {
     const items = formatFileTreeItemsFromText(text);
     const treeText = generate(items);
     assert(treeText.trim() === rootText.trim());
+  });
+
+  test('should correctly generate tree from hash-indented text if fill-left', () => {
+    const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash-indented.txt'), 'utf8');
+    const items = formatFileTreeItemsFromText(text);
+    const treeText = generate(items);
+    assert(treeText === rootFillLeft);
+  });
+
+  test('should correctly generate tree from hash-indented text if not fill-left', () => {
+    const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash-indented.txt'), 'utf8');
+    const items = formatFileTreeItemsFromText(text);
+    const treeText = generate(items, {
+      fillLeft: false,
+    });
+    assert(treeText === rootText);
   });
 });
