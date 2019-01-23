@@ -5,6 +5,7 @@ fixtures/**
 src/**
 .gitignore
 vsc-extension-quickstart.md
+DEVELOP.md
 **/tsconfig.json
 **/tslint.json
 **/*.map
