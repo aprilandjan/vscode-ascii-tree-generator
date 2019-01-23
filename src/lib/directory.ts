@@ -12,9 +12,14 @@ const readStat = promisify(fs.stat);
  * @param name 
  * @param dir 
  */
-async function getFileStat (name: string, dir?: string): Promise<IFileStat> {
+async function getFileStat (name: string, dir?: string): Promise<IFileStat | null> {
   const absolutePath = path.join(dir || process.cwd(), name);
-  const stat = await readStat(absolutePath);
+  let stat: fs.Stats;
+  try {
+    stat = await readStat(absolutePath);
+  } catch (e) {
+    return null;
+  }
   return {
     name,
     absolutePath,
@@ -55,7 +60,8 @@ export async function listDirectory(dir: string, config?: IListDirectoryConfig):
     nosort: !sort,
     ignore,
   });
-  let files = await Promise.all(fileNames.map(item => getFileStat(item, dir)));
+  let files: IFileStat[] = await Promise.all(fileNames.map(item => getFileStat(item, dir))) as IFileStat[];
+  files = files.filter(item => item !== null);
   //  sort
   if (sort) {
     files = sortFilesLikeVSCode(files);

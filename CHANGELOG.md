@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Fixed
 
 - Support formatting lines started with indent+hash pattern.
+- Fix errors when `fs.stat`. If failed, the file will be ignored in result.
 
 ## [1.0.0] - 2019-01-23
 
