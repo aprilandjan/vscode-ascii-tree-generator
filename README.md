@@ -1,10 +1,12 @@
-# ascii tree generator
+# ascii tree generator 
 
-A VS Code plugin to generate ascii tree of directories or format selected text to tree strings.
+[![Build Status](https://dev.azure.com/merlinye/ascii-tree-generator/_apis/build/status/aprilandjan.ascii-tree-generator?branchName=master)](https://dev.azure.com/merlinye/ascii-tree-generator/_build/latest?definitionId=1?branchName=master)
+
+A VS Code extension to generate ascii tree of directories or format selected text to tree strings.
 
 ## Usage
 
-This plugin provides convenient way to generate ascii tree strings for directory in workspace explorer. Besides, you can select text in editor and format it to tree strings easily.
+This extension provides convenient way to generate ascii tree strings for directory in workspace explorer. Besides, you can select text in editor and format it to tree strings easily.
 
 ### Generate Tree Strings for Directory
 
