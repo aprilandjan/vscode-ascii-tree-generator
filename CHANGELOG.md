@@ -5,6 +5,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-03-19
+
+### Feature
+
+- Add `Revert Tree Strings to Text` command in `Command Palette`.
+
 ## [1.0.1] - 2019-01-23
 
 ### Fixed
