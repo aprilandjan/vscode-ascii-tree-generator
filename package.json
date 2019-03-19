@@ -25,7 +25,8 @@
 	"activationEvents": [
 		"onCommand:extension.asciiTreeGenerator",
 		"onCommand:extension.asciiTreeGeneratorFromDirectory",
-		"onCommand:extension.asciiTreeGeneratorFromText"
+		"onCommand:extension.asciiTreeGeneratorFromText",
+		"onCommand:extension.asciiTreeGeneratorRevertToText"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -43,6 +44,11 @@
 			{
 				"command": "extension.asciiTreeGeneratorFromText",
 				"title": "Format Text to Tree Strings",
+				"category": "Ascii Tree Generator"
+			},
+			{
+				"command": "extension.asciiTreeGeneratorRevertToText",
+				"title": "Revert Tree Strings to Text",
 				"category": "Ascii Tree Generator"
 			}
 		],

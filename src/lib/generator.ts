@@ -1,7 +1,7 @@
 import { IFileTreeItem, ICharset, IFormatOptions } from './interface';
 import { getUserEOL } from '../utils';
 
-const defaultCharset: ICharset = {
+export const defaultCharset: ICharset = {
   // root: String.fromCharCode(46), // '.',
   child: String.fromCharCode(9500), // '├',
   last: String.fromCharCode(9492), // '└',

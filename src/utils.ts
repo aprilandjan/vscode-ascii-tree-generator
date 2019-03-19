@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import { defaultCharset } from './lib/generator';
 
 /**
  * get user file eol setting. if not specific, behave defaultly according platform
@@ -16,8 +17,8 @@ export function getUserEOL() {
 
 /**
  * create webview, with the ability to copy to clipboard, ect
- * @param text 
- * @param context 
+ * @param text
+ * @param context
  */
 export function createWebview(context: vscode.ExtensionContext, text = '') {
   const panel = vscode.window.createWebviewPanel(
@@ -55,6 +56,14 @@ export function createWebview(context: vscode.ExtensionContext, text = '') {
       });
     }
   }, null, context.subscriptions);
-  
+
   return panel;
+}
+
+/** create a revert regexp according to current config, and revert tree-string back */
+export function revertTreeString(treeString: string, replaceWith = '#') {
+  const { child, last, parent, dash, blank } = defaultCharset;
+  //  [└├]──|│ {3}| *(?=[└├│])
+  const reg = new RegExp(`[${last}${child}]${dash}${dash}|${parent}${blank}{3}|${blank}*(?=[${last}${child}${parent}])`, 'gm');
+  return treeString.replace(reg, replaceWith);
 }

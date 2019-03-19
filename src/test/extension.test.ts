@@ -1,22 +1,28 @@
-//
-// Note: This example test is leveraging the Mocha test framework.
-// Please refer to their documentation on https://mochajs.org/ for help.
-//
-
-// The module 'assert' provides assertion methods from node
+import * as fs from 'fs';
+import * as path from 'path';
 import * as assert from 'assert';
-
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
-// import * as vscode from 'vscode';
-// import * as myExtension from '../extension';
+import { revertTreeString } from '../utils';
 
 // Defines a Mocha test suite to group tests of similar kind together
-suite("Extension Tests", function () {
+suite('Extension Tests', function () {
+  this.timeout(120000);
 
-    // Defines a Mocha unit test
-    test("Something 1", function() {
-        assert.equal(-1, [1, 2, 3].indexOf(5));
-        assert.equal(-1, [1, 2, 3].indexOf(0));
+  // Defines a Mocha unit test
+  // test("Something 1", function() {
+  //     assert.equal(-1, [1, 2, 3].indexOf(5));
+  //     assert.equal(-1, [1, 2, 3].indexOf(0));
+  // });
+  test('revert tree strings to text', function () {
+    const rootText = fs.readFileSync(path.join(__dirname, '../../fixtures/root.txt'), 'utf8');
+    const rootReverted = fs.readFileSync(path.join(__dirname, '../../fixtures/root-reverted.txt'), 'utf8');
+    const reverted = revertTreeString(rootText);
+    const a = reverted.trim().split('\n');
+    const b = rootReverted.trim().split('\n');
+    a.forEach((line, idx) => {
+      if (a[idx] !== b[idx]) {
+        console.log(a[idx], b[idx]);
+      }
     });
+    assert(reverted.trim() === rootReverted.trim());
+  });
 });

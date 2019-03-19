@@ -9,8 +9,8 @@ const readStat = promisify(fs.stat);
 
 /**
  * get file stat
- * @param name 
- * @param dir 
+ * @param name
+ * @param dir
  */
 async function getFileStat (name: string, dir?: string): Promise<IFileStat | null> {
   const absolutePath = path.join(dir || process.cwd(), name);
@@ -30,8 +30,8 @@ async function getFileStat (name: string, dir?: string): Promise<IFileStat | nul
 }
 
 /**
- * sort these files like VS Code. directories first, and then non-directories 
- * @param files 
+ * sort these files like VS Code. directories first, and then non-directories
+ * @param files
  */
 function sortFilesLikeVSCode (files: IFileStat[]) {
   const directories = files.filter(item => item.isDirectory);
@@ -42,7 +42,7 @@ function sortFilesLikeVSCode (files: IFileStat[]) {
 /**
  * list directory recursively
  *
- * @param dir 
+ * @param dir
  * @param config
  */
 export async function listDirectory(dir: string, config?: IListDirectoryConfig): Promise<IFileStat[]> {

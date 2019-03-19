@@ -6,7 +6,7 @@ import * as path from 'path';
 
 import { formatFileTreeItemsFromDirectory } from './lib/directory';
 import { generate } from './lib/generator';
-import { getUserEOL, createWebview } from './utils';
+import { getUserEOL, createWebview, revertTreeString } from './utils';
 import { formatFileTreeItemsFromText } from './lib/text';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.commands.registerCommand(cmd, callback),
 		);
 	}
-	
+
 	registerCommand('extension.asciiTreeGenerator', async (resource: any) => {
 		const workspaces = vscode.workspace.workspaceFolders;
 		const rootWorkspace: vscode.WorkspaceFolder | undefined = workspaces ? workspaces[0] : undefined;
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		createWebview(context, text);
 	});
-	
+
 	//	create ascii tree from directory
 	registerCommand('extension.asciiTreeGeneratorFromDirectory', async (resource: vscode.Uri | undefined) => {
 		const workspaces = vscode.workspace.workspaceFolders;
@@ -92,6 +92,27 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 		editor.edit((edit) => {
 			edit.replace(editor.selection, text);
+		});
+	});
+
+	registerCommand('extension.asciiTreeGeneratorRevertToText', async () => {
+		const editor = vscode.window.activeTextEditor;
+		if (!editor) {
+			vscode.window.showWarningMessage('Please open the file you want to revert!');
+			return;
+		}
+		const text = editor.document.getText();
+		const reverted = revertTreeString(text);
+		const firstLine = editor.document.lineAt(0);
+		const lastLine = editor.document.lineAt(editor.document.lineCount - 1);
+		const range = new vscode.Range(
+			0,
+			firstLine.range.start.character,
+			editor.document.lineCount - 1,
+			lastLine.range.end.character,
+		);
+		editor.edit((edit) => {
+			edit.replace(range, reverted);
 		});
 	});
 }
