@@ -5,6 +5,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.1.1] - 2019-03-26
+
+### Fixed
+
+- Fix errors when formatting text lines with same multiple hash beginnings.
+
 ## [1.1.0] - 2019-03-19
 
 ### Feature
