@@ -13,7 +13,7 @@ suite('lib/generator functions', function () {
   const rootText = fs.readFileSync(path.join(__dirname, '../../../fixtures/root.txt'), 'utf8');
   const rootSorted = fs.readFileSync(path.join(__dirname, '../../../fixtures/root-sorted.txt'), 'utf8');
   const rootFillLeft = fs.readFileSync(path.join(__dirname, '../../../fixtures/root-fill-left.txt'), 'utf8');
-  
+
   test('should correctly generate tree from directory', async () => {
     const items = await formatFileTreeItemsFromDirectory(rootDir, {
       maxDepth: Number.MAX_VALUE,

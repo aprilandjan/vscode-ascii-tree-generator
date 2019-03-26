@@ -35,8 +35,12 @@ export interface ICharset {
 
 //  format tree string options
 export interface IFormatOptions {
+  /** fill left with same minimal space */
   fillLeft?: boolean;
+  /** root text added to the formatted tree strings */
   root?: string;
+  /** tree charset settings */
   charset?: ICharset;
+  /** end-of-line filling character */
   eol?: '\n' | '\r\n';
 }

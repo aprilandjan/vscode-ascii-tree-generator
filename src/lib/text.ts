@@ -1,12 +1,39 @@
 import { IFileTreeItem } from "./interface";
 
-export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[] {
+/** get line array. these lines are trimLeft with their common beginning substrings. */
+function getLines (text: string = '') {
   //  split selected text into separate lines
   //  empty lines are ignored
   const lines = text.split('\n').filter(line => line.trim() !== '');
+  if (lines.length <= 1) {
+    return lines;
+  }
 
+  const first = lines[0];
+  let commonSize = 0;
+  for(let i = 1; i < first.length; i++) {
+    if (first[i - 1] === ' ') {
+      break;
+    }
+    const substr = first.substr(0, i);
+    if (lines.every(line => line.startsWith(substr))) {
+      commonSize = i;
+    } else {
+      break;
+    }
+  }
+  if (commonSize > 0) {
+    return lines.map(line => line.substr(commonSize - 1).trimLeft());
+  }
+  return lines;
+}
+
+export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[] {
+  const lines = getLines(text);
+
+  //  find common hash
   const items: IFileTreeItem[] = [];
-  
+
   lines.reduce((list, line, index) => {
     //  iterate through each line
     //  line start with hash: /^#+/
@@ -95,4 +122,4 @@ export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[]
   }
 
   return items;
-} 
+}

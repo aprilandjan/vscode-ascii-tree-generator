@@ -29,7 +29,7 @@ suite('lib/text functions', function () {
       assert(src && src.isLast === true && !src.parent);
     });
 
-    test('should correctly format has-parent non-last file', () => {  
+    test('should correctly format has-parent non-last file', () => {
       const dist = findTreeItem(items, 'dist');
       const assets = findTreeItem(items, 'assets');
       assert(assets && assets.isLast === false && assets.parent === dist);
@@ -58,7 +58,7 @@ suite('lib/text functions', function () {
       assert(src && src.isLast === true && !src.parent);
     });
 
-    test('should correctly format has-parent non-last file', () => {  
+    test('should correctly format has-parent non-last file', () => {
       const dist = findTreeItem(items, 'dist');
       const assets = findTreeItem(items, 'assets');
       assert(assets && assets.isLast === false && assets.parent === dist);
@@ -93,7 +93,7 @@ suite('lib/text functions', function () {
       assert(src && src.isLast === true && !src.parent);
     });
 
-    test('should correctly format has-parent non-last file', () => {  
+    test('should correctly format has-parent non-last file', () => {
       const dist = findTreeItem(items, 'dist');
       const assets = findTreeItem(items, 'assets');
       assert(assets && assets.isLast === false && assets.parent === dist);
@@ -102,6 +102,22 @@ suite('lib/text functions', function () {
     test('should correctly format has-parent last file', () => {
       const logo = findTreeItem(items, 'logo.jpg');
       assert(logo && logo.isLast === true && logo.parent);
+    });
+  });
+
+  suite('parse from hash-common-beginning text', () => {
+    let items: IFileTreeItem[];
+    setup(() => {
+      const text = fs.readFileSync(path.join(__dirname, '../../../fixtures/hash-common-beginning.txt'), 'utf8');
+      items = formatFileTreeItemsFromText(text);
+    });
+
+    test('should correctly format last file', () => {
+      const first = items[0];
+      const last = items[items.length - 1];
+      assert(first.isLast === false);
+      assert(last.isLast === true);
+      assert(first.depth === last.depth);
     });
   });
 });
