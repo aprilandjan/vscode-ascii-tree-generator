@@ -5,6 +5,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.1.2] - 2019-10-09
+
+### Fixed
+
+- Fix exceptions when try to generate from an empty directory folder.
+
 ## [1.1.1] - 2019-03-26
 
 ### Fixed
