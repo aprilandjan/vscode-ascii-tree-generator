@@ -32,7 +32,7 @@ export function generate (items: IFileTreeItem[], options: IFormatOptions = {}) 
   } = options;
   let leftSpace = '';
   if (fillLeft) {
-    const minLeft = Math.min(...items.map(item => item.left || 0));
+    const minLeft = items.length ? Math.min(...items.map(item => item.left || 0)) : 0;
     leftSpace = Array(minLeft).fill(' ').join('');
   }
   const lines = items.map(item => {
