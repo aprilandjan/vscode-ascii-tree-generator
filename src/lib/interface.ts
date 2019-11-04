@@ -26,6 +26,7 @@ export interface IFileTreeItem {
 
 //  the charset interface
 export interface ICharset {
+  root: string;
   child: string;
   last: string;
   parent: string;

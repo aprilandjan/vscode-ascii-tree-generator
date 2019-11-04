@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { defaultCharset } from './lib/generator';
+import { ICharset } from './lib/interface';
+import { config } from './config';
 
 /**
  * get user file eol setting. if not specific, behave defaultly according platform
@@ -62,8 +64,29 @@ export function createWebview(context: vscode.ExtensionContext, text = '') {
 
 /** create a revert regexp according to current config, and revert tree-string back */
 export function revertTreeString(treeString: string, replaceWith = '#') {
-  const { child, last, parent, dash, blank } = defaultCharset;
+  const { child, last, parent, dash, blank } = getCharCodesFromConfig();
   //  [└├]──|│ {3}| *(?=[└├│])
   const reg = new RegExp(`[${last}${child}]${dash}${dash}|${parent}${blank}{3}|${blank}*(?=[${last}${child}${parent}])`, 'gm');
   return treeString.replace(reg, replaceWith);
+}
+
+export function getCharCodesFromConfig() : ICharset{
+  let charset: ICharset = {
+    root: validateCharCode(config.rootCharCode, defaultCharset.root),
+    child: validateCharCode(config.childCharCode, defaultCharset.child),
+    last: validateCharCode(config.lastCharCode, defaultCharset.last),
+    parent: validateCharCode(config.parentCharCode, defaultCharset.parent),
+    dash: validateCharCode(config.dashCharCode, defaultCharset.dash),
+    blank: validateCharCode(config.blankCharCode, defaultCharset.blank),
+  }
+  return charset;
+}
+
+function validateCharCode(userValue: number | undefined, fallback: string) : string{
+  if (typeof userValue === "undefined" || userValue < 0 || userValue > 65535){
+    return fallback;
+  }
+  else{
+    return String.fromCharCode(userValue);
+  }
 }
