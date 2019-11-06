@@ -63,7 +63,27 @@ Right-click on `Explorer` directories, click `Generate Tree Strings for Director
 
 ## Configuration
 
-Not available yet...
+Each character of the tree can be defined by its ASCII code (or UTF character code in general). The theoretical range for character codes is 0 to 65535. However, not every code will lead to a printable character and may cause formatting problems.
+The available parameters are:
+
+| Name | Default Char Code | Default  Character   | Description     |
+| -----------------------------| ---- | --------  | --------------- |
+| Blank element caracter code  | 32   | '&#32;'   | For blanks / spaces |
+| Child element caracter code  | 9500 | '&#9500;' | For intermediate child elements |
+| Dash element caracter code   | 9472 | '&#9472;' | For horizontal dashes |
+| Last element caracter code   | 9492 | '&#9492;' | For the last element of a path |
+| Parent element caracter code | 9474 | '&#9474;' | For vertical parent elements |
+| Root element caracter code   | 46   | '&#46;'   | For the root element (on top) |
+
+
+### Sample Configurations
+
+| Configuration   | Blank | Child | Dash | Last | Parent | Root | Characters |
+| --------------- | ----- | ----- | ---- | ---- | ------ | ---- | ---------- |
+| Default         | 32    | 9500  | 9472 | 9492 | 9474   | 46   | '&#46;&#9500;&#9492;&#9474;&#9472;&#32;' |
+| Double Line     | 32    | 9568  | 9552 | 9562 | 9553   | 9559 | '&#9559;&#9568;&#9562;&#9553;&#9552;&#32;' |
+| Classic         | 32    | 124   | 45   | 43   | 124    | 43   | '&#43;&#124;&#43;&#124;&#45;&#32;' |
+| Classic Rounded | 32    | 124   | 45   | 96   | 124    | 46   | '&#46;&#124;&#96;&#124;&#45;&#32;' |
 
 ## Issues & Contribution
 

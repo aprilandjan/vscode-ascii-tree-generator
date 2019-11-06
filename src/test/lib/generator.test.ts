@@ -5,10 +5,12 @@ import * as path from 'path';
 import { formatFileTreeItemsFromDirectory } from '../../lib/directory';
 import { formatFileTreeItemsFromText } from '../../lib/text';
 import { generate } from '../../lib/generator';
+import { setTestMode } from '../../utils';
 
 suite('lib/generator functions', function () {
   this.timeout(120000);
-
+  // Enable test mode to override user defined chars with defaults
+  setTestMode();
   const rootDir: string = path.resolve(__dirname, '../../../fixtures/root');
   const rootText = fs.readFileSync(path.join(__dirname, '../../../fixtures/root.txt'), 'utf8');
   const rootSorted = fs.readFileSync(path.join(__dirname, '../../../fixtures/root-sorted.txt'), 'utf8');

@@ -34,6 +34,17 @@ export interface ICharset {
   blank: string;
 }
 
+//  the VS code config interface
+export interface IVsCodeConfig {
+  ignore: string[];
+  rootCharCode: number | undefined;
+  childCharCode: number | undefined;
+  lastCharCode: number | undefined;
+  parentCharCode: number | undefined;
+  dashCharCode: number | undefined;
+  blankCharCode: number | undefined;
+}
+
 //  format tree string options
 export interface IFormatOptions {
   /** fill left with same minimal space */
