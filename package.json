@@ -34,32 +34,32 @@
 			{
 				"title": "Ascii Tree Generator Configuration",
 				"properties": {
-					"Root element caracter code": {
+					"Root element character code": {
 						"type": "integer",
 						"default": 46,
 						"description": "For the root element (0-65535; Default: 46 '.')"
 					},
-					"Child element caracter code": {
+					"Child element character code": {
 						"type": "integer",
 						"default": 9500,
 						"description": "For child elements (0-65535; Default: 9500 '&#9500;')"
 					},
-					"Last element caracter code": {
+					"Last element character code": {
 						"type": "integer",
 						"default": 9492,
 						"description": "For the last element of a path (0-65535; Default: 9492 '&#9492;')"
 					},
-					"Parent element caracter code": {
+					"Parent element character code": {
 						"type": "integer",
 						"default": 9474,
 						"description": "For vertical parent elements (0-65535; Default: 9474 '&#9474;')"
 					},
-					"Dash element caracter code": {
+					"Dash element character code": {
 						"type": "integer",
 						"default": 9472,
 						"description": "For horizontal dashes (0-65535; Default: 9472 '&#9472;')"
 					},
-					"Blank element caracter code": {
+					"Blank element character code": {
 						"type": "integer",
 						"default": 32,
 						"description": "For blanks / spaces (0-65535; Default: 32 ' ')"
