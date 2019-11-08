@@ -6,12 +6,12 @@ export function getConfig(): IVsCodeConfig {
     ignore: [
       'node_modules'
     ],
-    rootCharCode: vscode.workspace.getConfiguration().get<number>("Root element caracter code"),
-    childCharCode: vscode.workspace.getConfiguration().get<number>("Child element caracter code"),
-    lastCharCode: vscode.workspace.getConfiguration().get<number>("Last element caracter code"),
-    parentCharCode: vscode.workspace.getConfiguration().get<number>("Parent element caracter code"),
-    dashCharCode: vscode.workspace.getConfiguration().get<number>("Dash element caracter code"),
-    blankCharCode: vscode.workspace.getConfiguration().get<number>("Blank element caracter code")
+    rootCharCode: vscode.workspace.getConfiguration().get<number>("Root element character code"),
+    childCharCode: vscode.workspace.getConfiguration().get<number>("Child element character code"),
+    lastCharCode: vscode.workspace.getConfiguration().get<number>("Last element character code"),
+    parentCharCode: vscode.workspace.getConfiguration().get<number>("Parent element character code"),
+    dashCharCode: vscode.workspace.getConfiguration().get<number>("Dash element character code"),
+    blankCharCode: vscode.workspace.getConfiguration().get<number>("Blank element character code")
   };
   return config;
 }
