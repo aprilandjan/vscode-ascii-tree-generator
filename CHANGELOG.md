@@ -5,6 +5,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.2.1] - 2019-11-08
+
+## Fixed
+
+- Fix problems while reading user charset configurations.
+
 ## [1.2.0] - 2019-11-08
 
 ### Added
