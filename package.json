@@ -1,7 +1,7 @@
 {
 	"name": "ascii-tree-generator",
 	"displayName": "Ascii Tree Generator",
-	"description": "A VS Code extension to generate ascii tree of directories or formatting selected text to tree strings.",
+	"description": "A VS Code extension to generate ascii tree of directories or formatting selected text to tree string.",
 	"version": "1.2.1",
 	"engines": {
 		"vscode": "^1.30.0"
@@ -75,31 +75,31 @@
 			},
 			{
 				"command": "extension.asciiTreeGeneratorFromDirectory",
-				"title": "Generate Tree Strings for Directory",
+				"title": "Generate Tree String",
 				"category": "Ascii Tree Generator"
 			},
 			{
 				"command": "extension.asciiTreeGeneratorFromText",
-				"title": "Format Text to Tree Strings",
+				"title": "Format Text to Tree String",
 				"category": "Ascii Tree Generator"
 			},
 			{
 				"command": "extension.asciiTreeGeneratorRevertToText",
-				"title": "Revert Tree Strings to Text",
+				"title": "Revert Tree String to Text",
 				"category": "Ascii Tree Generator"
 			}
 		],
 		"menus": {
 			"commandPalette": [
 				{
-					"command": "extension.asciiTreeGenerator",
-					"group": "navigation"
+					"command": "extension.asciiTreeGenerator"
 				}
 			],
 			"explorer/context": [
 				{
 					"command": "extension.asciiTreeGeneratorFromDirectory",
-					"group": "navigation"
+					"group": "asciiTreeGenerator@1",
+					"when": "explorerResourceIsFolder"
 				}
 			],
 			"editor/context": [
