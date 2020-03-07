@@ -1,6 +1,6 @@
 import { IFileTreeItem } from "./interface";
 
-/** get line array. these lines are trimLeft with their common beginning substrings. */
+/** get line array. these lines are trimLeft with their common beginning substring. */
 function getLines (text: string = '') {
   //  split selected text into separate lines
   //  empty lines are ignored

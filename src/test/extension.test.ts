@@ -12,7 +12,7 @@ suite('Extension Tests', function () {
   //     assert.equal(-1, [1, 2, 3].indexOf(5));
   //     assert.equal(-1, [1, 2, 3].indexOf(0));
   // });
-  test('revert tree strings to text', function () {
+  test('revert tree string to text', function () {
     const rootText = fs.readFileSync(path.join(__dirname, '../../fixtures/root.txt'), 'utf8');
     const rootReverted = fs.readFileSync(path.join(__dirname, '../../fixtures/root-reverted.txt'), 'utf8');
     const reverted = revertTreeString(rootText);

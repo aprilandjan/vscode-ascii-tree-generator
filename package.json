@@ -105,7 +105,7 @@
 			"editor/context": [
 				{
 					"command": "extension.asciiTreeGeneratorFromText",
-					"group": "1_modification",
+					"group": "asciiTreeGenerator@1",
 					"when": "editorHasSelection"
 				}
 			]

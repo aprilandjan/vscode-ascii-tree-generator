@@ -22,7 +22,7 @@ function createTreeString (start: string, fill: string, size: number = 3) {
   return result + ' ';
 }
 
-/** generate tree strings */
+/** generate tree string */
 export function generate (items: IFileTreeItem[], options: IFormatOptions = {}) {
   const {
     eol = getUserEOL(),

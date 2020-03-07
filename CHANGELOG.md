@@ -33,7 +33,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Feature
 
-- Add `Revert Tree Strings to Text` command in `Command Palette`.
+- Add `Revert Tree String to Text` command in `Command Palette`.
 
 ## [1.0.1] - 2019-01-23
 

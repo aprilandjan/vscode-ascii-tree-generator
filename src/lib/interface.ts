@@ -49,7 +49,7 @@ export interface IVsCodeConfig {
 export interface IFormatOptions {
   /** fill left with same minimal space */
   fillLeft?: boolean;
-  /** root text added to the formatted tree strings */
+  /** root text added to the formatted tree string */
   root?: string;
   /** tree charset settings */
   charset?: ICharset;
