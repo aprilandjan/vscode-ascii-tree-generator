@@ -2,7 +2,7 @@
 	"name": "ascii-tree-generator",
 	"displayName": "Ascii Tree Generator",
 	"description": "A VS Code extension to generate ascii tree of directories or formatting selected text to tree string.",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"engines": {
 		"vscode": "^1.30.0"
 	},

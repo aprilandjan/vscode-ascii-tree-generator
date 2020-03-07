@@ -5,6 +5,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.2.2] - 2020-03-07
+
+- Fix wording and menu command group([@tjx666](https://github.com/tjx666)).
+
 ## [1.2.1] - 2019-11-08
 
 ## Fixed
@@ -15,7 +19,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 
-- Added configuration for character codes([@rabanti-github](https://github.com/rabanti-github))
+- Added configuration for character codes([@rabanti-github](https://github.com/rabanti-github)).
 
 ## [1.1.2] - 2019-10-09
 
