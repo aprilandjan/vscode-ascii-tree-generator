@@ -25,4 +25,12 @@ suite('Extension Tests', function () {
     });
     assert(reverted.trim() === rootReverted.trim());
   });
+
+  // https://github.com/aprilandjan/ascii-tree-generator/pull/11
+  test('revert more-depth tree string to text', function () {
+    const origin = fs.readFileSync(path.join(__dirname, '../../fixtures/more-depth-reverted.txt'), 'utf8');
+    const treeString = fs.readFileSync(path.join(__dirname, '../../fixtures/more-depth.txt'), 'utf8');
+    const reverted = revertTreeString(treeString);
+    assert(origin.trim() === reverted.trim());
+  });
 });
