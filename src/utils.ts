@@ -67,7 +67,7 @@ export function createWebview(context: vscode.ExtensionContext, text = '') {
 /** create a revert regexp according to current config, and revert tree-string back */
 export function revertTreeString(treeString: string, replaceWith = '#') {
   const { child, last, parent, dash, blank } = getCharCodesFromConfig();
-  //  [└├]──|│ {3}|^( {4})+?|(?= {4})( {4})+?|( {4})(?=[└├│])
+  //  [└├]──|│ {3}|^( {4})+?|( {4})(?=.*[└├│])
   const reg = new RegExp(`[${last}${child}]${dash}${dash}|${parent}${blank}{3}|^(${blank}{4})+?|(${blank}{4})(?=.*[${last}${child}${parent}])`, 'gm');
   return treeString.replace(reg, replaceWith);
 }
