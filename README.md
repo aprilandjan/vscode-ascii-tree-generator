@@ -1,10 +1,10 @@
-# [ascii tree generator](https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator)
+# [vscode ascii tree generator](https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator)
 
 [![Build Status](https://dev.azure.com/merlinye/ascii-tree-generator/_apis/build/status/aprilandjan.ascii-tree-generator?branchName=master)](https://dev.azure.com/merlinye/ascii-tree-generator/_build/latest?definitionId=1?branchName=master)
 [![Download Count](https://img.shields.io/visual-studio-marketplace/d/aprilandjan.ascii-tree-generator)](https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator)
 [![Download Count](https://img.shields.io/visual-studio-marketplace/i/aprilandjan.ascii-tree-generator)](https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator)
 
-A VS Code extension to generate ascii tree of directories or format selected text to tree string.
+A vscode extension to generate ascii tree of directories or format selected text to tree string.
 
 ## Usage
 
