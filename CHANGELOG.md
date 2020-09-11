@@ -5,6 +5,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.2.4] - 2020-09-11
+
+- Remove the introduction (temporarily) for `indent` character usage in Readme since it is buggy (see [#13](https://github.com/aprilandjan/vscode-ascii-tree-generator/issues/13)).
+
 ## [1.2.3] - 2020-04-29
 
 ### Fixed

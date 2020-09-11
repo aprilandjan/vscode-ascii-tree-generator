@@ -16,29 +16,16 @@ Write simple tree lines in certain syntax (see example below), select these line
 
 ![Format Text to Tree String](./images/text.gif)
 
-The following kinds of line syntax is supported to correctly format to tree string:
+The lines started with `hash(#)` characters can be used to represent the depth of the directory tree. For example:
 
-- lines started with `indent(space or tab)` characters:
-
-  ```
-  public
-  dist
-    index.d.ts
-    index.js
-  src
-    index.ts
-  ```
-
-- line started with `hash(#)` symbol
-
-  ```
-  # public
-  # dist
-  ## index.d.ts
-  ## index.js
-  # src
-  ## index.ts
-  ```
+```
+# public
+# dist
+## index.d.ts
+## index.js
+# src
+## index.ts
+```
 
 They should be formatted to:
 
@@ -49,7 +36,7 @@ They should be formatted to:
 │   ├── index.d.ts
 │   └── index.js
 └── src
-    └── index.ts
+  └── index.ts
 ```
 
 **Note**: In most cases, you can just simply undo the formatting operation using the vscode editor `undo` ability. The default shortcut is <kbd>cmd</kbd>+<kbd>Z</kbd>. Besides,
