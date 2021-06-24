@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
             : undefined;
         if (!rootWorkspace) {
             vscode.window.showWarningMessage(
-                "Ascii Tree Generator need to be used with valid workspace folder!"
+                "ASCII Tree Generator need to be used with valid workspace folder!"
             );
             return;
         }
@@ -56,7 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
                 : undefined;
             if (!rootWorkspace) {
                 vscode.window.showWarningMessage(
-                    "Ascii Tree Generator need to be used with valid workspace folder!"
+                    "ASCII Tree Generator need to be used with valid workspace folder!"
                 );
                 return;
             }
@@ -82,44 +82,38 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
-    registerCommand(
-        "extension.asciiTreeGeneratorFromText",
-        async (resource: any) => {
-            const editor = vscode.window.activeTextEditor;
-            if (!editor || editor.selection.isEmpty) {
-                vscode.window.showWarningMessage(
-                    "No text selected. Please select text in editor before generating Tree String!"
-                );
-                return;
-            }
-            //	find and select lines where current selection range locates
-            const start = editor.selection.start.line;
-            const end = editor.selection.end.line;
-            const endLineSize = editor.document.lineAt(end).text.length;
-
-            const range = editor.document.validateRange(
-                new vscode.Range(
-                    new vscode.Position(start, 0),
-                    new vscode.Position(end, endLineSize)
-                )
+    registerCommand("extension.asciiTreeGeneratorFromText", async () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor || editor.selection.isEmpty) {
+            vscode.window.showWarningMessage(
+                "No text selected. Please select text in editor before generating tree string!"
             );
-            editor.selection = new vscode.Selection(range.start, range.end);
-
-            //	generate text and replace...
-            const rawText = editor.document.getText(range);
-            const items = formatFileTreeItemsFromText(rawText);
-            const text = generate(items, {
-                eol:
-                    editor.document.eol === vscode.EndOfLine.CRLF
-                        ? "\r\n"
-                        : "\n",
-                // Todo: read plugin configurations
-            });
-            editor.edit((edit) => {
-                edit.replace(editor.selection, text);
-            });
+            return;
         }
-    );
+        //	find and select lines where current selection range locates
+        const start = editor.selection.start.line;
+        const end = editor.selection.end.line;
+        const endLineSize = editor.document.lineAt(end).text.length;
+
+        const range = editor.document.validateRange(
+            new vscode.Range(
+                new vscode.Position(start, 0),
+                new vscode.Position(end, endLineSize)
+            )
+        );
+        editor.selection = new vscode.Selection(range.start, range.end);
+
+        //	generate text and replace...
+        const rawText = editor.document.getText(range);
+        const items = formatFileTreeItemsFromText(rawText);
+        const text = generate(items, {
+            eol: editor.document.eol === vscode.EndOfLine.CRLF ? "\r\n" : "\n",
+            // Todo: read plugin configurations
+        });
+        editor.edit((edit) => {
+            edit.replace(editor.selection, text);
+        });
+    });
 
     registerCommand("extension.asciiTreeGeneratorRevertToText", async () => {
         const editor = vscode.window.activeTextEditor;
