@@ -5,9 +5,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.2.5] - 2021-06-24
+
+### Changed
+
+- Reformatted files for easier readability (`Prettier` extension)
+- Formalized [README.md](README.md) contents
+- Changed property names (should not have spaces in them and was not descriptive to current extension)
+
+### Fixed
+
+- Some bug in VSCode `bin` installation when using yarn
+  - To fix, change stable releases link from `https://vscode-update.azurewebsites.net/api/releases/stable` to `https://update.code.visualstudio.com/api/releases/stable`
+
 ## [1.2.4] - 2020-09-11
 
-- Remove the introduction (temporarily) for `indent` character usage in Readme since it is buggy (see [#13](https://github.com/aprilandjan/vscode-ascii-tree-generator/issues/13)).
+- Remove the introduction (temporarily) for `indent` character usage in [README.md](README.md) since it is buggy (see [#13](https://github.com/aprilandjan/vscode-ascii-tree-generator/issues/13)).
 
 ## [1.2.3] - 2020-04-29
 
