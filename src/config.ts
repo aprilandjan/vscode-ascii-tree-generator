@@ -6,22 +6,22 @@ export function getConfig(): IVsCodeConfig {
         ignore: ["node_modules"],
         rootCharCode: vscode.workspace
             .getConfiguration()
-            .get<number>("Root element character code"),
-        childCharCode: vscode.workspace
-            .getConfiguration()
-            .get<number>("Child element character code"),
-        lastCharCode: vscode.workspace
-            .getConfiguration()
-            .get<number>("Last element character code"),
+            .get<number>("asciiTreeGenerator.rootElement"),
         parentCharCode: vscode.workspace
             .getConfiguration()
-            .get<number>("Parent element character code"),
+            .get<number>("asciiTreeGenerator.parentElement"),
+        childCharCode: vscode.workspace
+            .getConfiguration()
+            .get<number>("asciiTreeGenerator.childElement"),
+        lastCharCode: vscode.workspace
+            .getConfiguration()
+            .get<number>("asciiTreeGenerator.lastElement"),
         dashCharCode: vscode.workspace
             .getConfiguration()
-            .get<number>("Dash element character code"),
+            .get<number>("asciiTreeGenerator.dashElement"),
         blankCharCode: vscode.workspace
             .getConfiguration()
-            .get<number>("Blank element character code"),
+            .get<number>("asciiTreeGenerator.blankElement"),
     };
     return config;
 }
