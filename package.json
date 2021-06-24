@@ -4,7 +4,7 @@
     "description": "A vscode extension to generate ascii tree of directories or formatting selected text to tree string.",
     "version": "1.2.4",
     "engines": {
-        "vscode": "^1.30.0"
+        "vscode": "^1.50.0"
     },
     "categories": [
         "Formatters",
