@@ -1,132 +1,132 @@
 {
-	"name": "ascii-tree-generator",
-	"displayName": "Ascii Tree Generator",
-	"description": "A vscode extension to generate ascii tree of directories or formatting selected text to tree string.",
-	"version": "1.2.4",
-	"engines": {
-		"vscode": "^1.30.0"
-	},
-	"categories": [
-		"Formatters",
-		"Other"
-	],
-	"publisher": "aprilandjan",
-	"license": "SEE LICENSE IN LICENSE",
-	"icon": "images/icon.png",
-	"galleryBanner": {
-		"color": "#135200",
-		"theme": "dark"
-	},
-	"author": "aprilandjan",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/aprilandjan/vscode-ascii-tree-generator"
-	},
-	"activationEvents": [
-		"onCommand:extension.asciiTreeGenerator",
-		"onCommand:extension.asciiTreeGeneratorFromDirectory",
-		"onCommand:extension.asciiTreeGeneratorFromText",
-		"onCommand:extension.asciiTreeGeneratorRevertToText"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"configuration": [
-			{
-				"title": "Ascii Tree Generator Configuration",
-				"properties": {
-					"Root element character code": {
-						"type": "integer",
-						"default": 46,
-						"description": "For the root element (0-65535; Default: 46 '.')"
-					},
-					"Child element character code": {
-						"type": "integer",
-						"default": 9500,
-						"description": "For child elements (0-65535; Default: 9500 '&#9500;')"
-					},
-					"Last element character code": {
-						"type": "integer",
-						"default": 9492,
-						"description": "For the last element of a path (0-65535; Default: 9492 '&#9492;')"
-					},
-					"Parent element character code": {
-						"type": "integer",
-						"default": 9474,
-						"description": "For vertical parent elements (0-65535; Default: 9474 '&#9474;')"
-					},
-					"Dash element character code": {
-						"type": "integer",
-						"default": 9472,
-						"description": "For horizontal dashes (0-65535; Default: 9472 '&#9472;')"
-					},
-					"Blank element character code": {
-						"type": "integer",
-						"default": 32,
-						"description": "For blanks / spaces (0-65535; Default: 32 ' ')"
-					}
-				}
-			}
-		],
-		"commands": [
-			{
-				"command": "extension.asciiTreeGenerator",
-				"title": "Generate Tree",
-				"category": "Ascii Tree Generator"
-			},
-			{
-				"command": "extension.asciiTreeGeneratorFromDirectory",
-				"title": "Generate Tree String",
-				"category": "Ascii Tree Generator"
-			},
-			{
-				"command": "extension.asciiTreeGeneratorFromText",
-				"title": "Format Text to Tree String",
-				"category": "Ascii Tree Generator"
-			},
-			{
-				"command": "extension.asciiTreeGeneratorRevertToText",
-				"title": "Revert Tree String to Text",
-				"category": "Ascii Tree Generator"
-			}
-		],
-		"menus": {
-			"commandPalette": [
-				{
-					"command": "extension.asciiTreeGenerator"
-				}
-			],
-			"explorer/context": [
-				{
-					"command": "extension.asciiTreeGeneratorFromDirectory",
-					"group": "asciiTreeGenerator@1",
-					"when": "explorerResourceIsFolder"
-				}
-			],
-			"editor/context": [
-				{
-					"command": "extension.asciiTreeGeneratorFromText",
-					"group": "asciiTreeGenerator@1",
-					"when": "editorHasSelection"
-				}
-			]
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^2.2.42",
-		"@types/node": "^8.10.25",
-		"tslint": "^5.20.0",
-		"typescript": "^3.1.4",
-		"vscode": "^1.1.36"
-	},
-	"dependencies": {
-		"glob": "^7.1.3"
-	}
+    "name": "ascii-tree-generator",
+    "displayName": "Ascii Tree Generator",
+    "description": "A vscode extension to generate ascii tree of directories or formatting selected text to tree string.",
+    "version": "1.2.4",
+    "engines": {
+        "vscode": "^1.30.0"
+    },
+    "categories": [
+        "Formatters",
+        "Other"
+    ],
+    "publisher": "aprilandjan",
+    "license": "SEE LICENSE IN LICENSE",
+    "icon": "images/icon.png",
+    "galleryBanner": {
+        "color": "#135200",
+        "theme": "dark"
+    },
+    "author": "aprilandjan",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aprilandjan/vscode-ascii-tree-generator"
+    },
+    "activationEvents": [
+        "onCommand:extension.asciiTreeGenerator",
+        "onCommand:extension.asciiTreeGeneratorFromDirectory",
+        "onCommand:extension.asciiTreeGeneratorFromText",
+        "onCommand:extension.asciiTreeGeneratorRevertToText"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "configuration": [
+            {
+                "title": "Ascii Tree Generator Configuration",
+                "properties": {
+                    "Root element character code": {
+                        "type": "integer",
+                        "default": 46,
+                        "description": "For the root element (0-65535; Default: 46 '.')"
+                    },
+                    "Child element character code": {
+                        "type": "integer",
+                        "default": 9500,
+                        "description": "For child elements (0-65535; Default: 9500 '&#9500;')"
+                    },
+                    "Last element character code": {
+                        "type": "integer",
+                        "default": 9492,
+                        "description": "For the last element of a path (0-65535; Default: 9492 '&#9492;')"
+                    },
+                    "Parent element character code": {
+                        "type": "integer",
+                        "default": 9474,
+                        "description": "For vertical parent elements (0-65535; Default: 9474 '&#9474;')"
+                    },
+                    "Dash element character code": {
+                        "type": "integer",
+                        "default": 9472,
+                        "description": "For horizontal dashes (0-65535; Default: 9472 '&#9472;')"
+                    },
+                    "Blank element character code": {
+                        "type": "integer",
+                        "default": 32,
+                        "description": "For blanks / spaces (0-65535; Default: 32 ' ')"
+                    }
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "extension.asciiTreeGenerator",
+                "title": "Generate Tree",
+                "category": "Ascii Tree Generator"
+            },
+            {
+                "command": "extension.asciiTreeGeneratorFromDirectory",
+                "title": "Generate Tree String",
+                "category": "Ascii Tree Generator"
+            },
+            {
+                "command": "extension.asciiTreeGeneratorFromText",
+                "title": "Format Text to Tree String",
+                "category": "Ascii Tree Generator"
+            },
+            {
+                "command": "extension.asciiTreeGeneratorRevertToText",
+                "title": "Revert Tree String to Text",
+                "category": "Ascii Tree Generator"
+            }
+        ],
+        "menus": {
+            "commandPalette": [
+                {
+                    "command": "extension.asciiTreeGenerator"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "extension.asciiTreeGeneratorFromDirectory",
+                    "group": "asciiTreeGenerator@1",
+                    "when": "explorerResourceIsFolder"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "extension.asciiTreeGeneratorFromText",
+                    "group": "asciiTreeGenerator@1",
+                    "when": "editorHasSelection"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "yarn run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.1",
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^8.10.25",
+        "tslint": "^5.20.0",
+        "typescript": "^3.1.4",
+        "vscode": "^1.1.36"
+    },
+    "dependencies": {
+        "glob": "^7.1.3"
+    }
 }
