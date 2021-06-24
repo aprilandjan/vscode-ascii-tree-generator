@@ -29,8 +29,8 @@ export function getUserEOL() {
  */
 export function createWebview(context: vscode.ExtensionContext, text = "") {
     const panel = vscode.window.createWebviewPanel(
-        "AsciiTreeGenerator",
-        "Ascii Tree",
+        "ASCII Tree Generator",
+        "ASCII Tree",
         vscode.ViewColumn.One,
         {
             enableScripts: true,
@@ -53,7 +53,7 @@ export function createWebview(context: vscode.ExtensionContext, text = "") {
                 case "copy":
                     vscode.env.clipboard.writeText(text).then(() => {
                         vscode.window.showInformationMessage(
-                            "Copy to Clipboard Successfully."
+                            "Copied to clipboard successfully!"
                         );
                     });
                     break;
