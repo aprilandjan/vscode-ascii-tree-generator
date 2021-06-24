@@ -39,6 +39,11 @@
                         "default": 46,
                         "description": "For root elements (0-65535; Default: 46 '.')"
                     },
+                    "asciiTreeGenerator.parentElement": {
+                        "type": "integer",
+                        "default": 9474,
+                        "description": "For vertical parent elements (0-65535; Default: 9474 '&#9474;')"
+                    },
                     "asciiTreeGenerator.childElement": {
                         "type": "integer",
                         "default": 9500,
@@ -48,11 +53,6 @@
                         "type": "integer",
                         "default": 9492,
                         "description": "For last elements of paths (0-65535; Default: 9492 '&#9492;')"
-                    },
-                    "asciiTreeGenerator.parentElement": {
-                        "type": "integer",
-                        "default": 9474,
-                        "description": "For vertical parent elements (0-65535; Default: 9474 '&#9474;')"
                     },
                     "asciiTreeGenerator.dashElement": {
                         "type": "integer",
