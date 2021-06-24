@@ -57,12 +57,12 @@ The available parameters are:
 
 | Name | Default Char Code | Default  Character   | Description     |
 | -----------------------------| ---- | --------  | --------------- |
-| Blank element character code  | 32   | '&#32;'   | For blanks / spaces |
-| Child element character code  | 9500 | '&#9500;' | For intermediate child elements |
-| Dash element character code   | 9472 | '&#9472;' | For horizontal dashes |
-| Last element character code   | 9492 | '&#9492;' | For the last element of a path |
-| Parent element character code | 9474 | '&#9474;' | For vertical parent elements |
-| Root element character code   | 46   | '&#46;'   | For the root element (on top) |
+| asciiTreeGenerator.blankElement  | 32   | '&#32;'   | For blanks / spaces |
+| asciiTreeGenerator.childElement  | 9500 | '&#9500;' | For intermediate child elements |
+| asciiTreeGenerator.dashElement   | 9472 | '&#9472;' | For horizontal dashes |
+| asciiTreeGenerator.lastElement   | 9492 | '&#9492;' | For the last element of a path |
+| asciiTreeGenerator.parentElement | 9474 | '&#9474;' | For vertical parent elements |
+| asciiTreeGenerator.rootElement   | 46   | '&#46;'   | For the root element (on top) |
 
 
 ### Sample Configurations
