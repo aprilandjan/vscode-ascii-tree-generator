@@ -12,7 +12,10 @@ const readStat = promisify(fs.stat);
  * @param name
  * @param dir
  */
-async function getFileStat (name: string, dir?: string): Promise<IFileStat | null> {
+async function getFileStat(
+  name: string,
+  dir?: string
+): Promise<IFileStat | null> {
   const absolutePath = path.join(dir || process.cwd(), name);
   let stat: fs.Stats;
   try {
@@ -33,9 +36,9 @@ async function getFileStat (name: string, dir?: string): Promise<IFileStat | nul
  * sort these files like VS Code. directories first, and then non-directories
  * @param files
  */
-function sortFilesLikeVSCode (files: IFileStat[]) {
-  const directories = files.filter(item => item.isDirectory);
-  const nonDirectories = files.filter(item => !item.isDirectory);
+function sortFilesLikeVSCode(files: IFileStat[]) {
+  const directories = files.filter((item) => item.isDirectory);
+  const nonDirectories = files.filter((item) => !item.isDirectory);
   return directories.concat(nonDirectories);
 }
 
@@ -45,12 +48,11 @@ function sortFilesLikeVSCode (files: IFileStat[]) {
  * @param dir
  * @param config
  */
-export async function listDirectory(dir: string, config?: IListDirectoryConfig): Promise<IFileStat[]> {
-  const {
-    ignore = [],
-    sort = false,
-    maxDepth = 1,
-  } = config || {};
+export async function listDirectory(
+  dir: string,
+  config?: IListDirectoryConfig
+): Promise<IFileStat[]> {
+  const { ignore = [], sort = false, maxDepth = 1 } = config || {};
   if (maxDepth <= 0) {
     return [];
   }
@@ -60,8 +62,10 @@ export async function listDirectory(dir: string, config?: IListDirectoryConfig):
     nosort: !sort,
     ignore,
   });
-  let files: IFileStat[] = await Promise.all(fileNames.map(item => getFileStat(item, dir))) as IFileStat[];
-  files = files.filter(item => item !== null);
+  let files: IFileStat[] = (await Promise.all(
+    fileNames.map((item) => getFileStat(item, dir))
+  )) as IFileStat[];
+  files = files.filter((item) => item !== null);
   //  sort
   if (sort) {
     files = sortFilesLikeVSCode(files);
@@ -76,7 +80,7 @@ export async function listDirectory(dir: string, config?: IListDirectoryConfig):
         });
         file.children = subFiles;
         //  add 'parent' mark
-        subFiles.forEach(f => {
+        subFiles.forEach((f) => {
           f.parent = file;
         });
       }
@@ -85,7 +89,10 @@ export async function listDirectory(dir: string, config?: IListDirectoryConfig):
   return files;
 }
 
-export async function formatFileTreeItemsFromDirectory(dir: string, config?: IListDirectoryConfig) {
+export async function formatFileTreeItemsFromDirectory(
+  dir: string,
+  config?: IListDirectoryConfig
+) {
   const files = await listDirectory(dir, config);
 
   const allList: IFileTreeItem[] = [];

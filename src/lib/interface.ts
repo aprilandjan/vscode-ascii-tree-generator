@@ -1,4 +1,4 @@
-import { Stats } from "fs";
+import { Stats } from 'fs';
 
 export interface IListDirectoryConfig {
   ignore?: string[];

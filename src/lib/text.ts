@@ -1,34 +1,36 @@
-import { IFileTreeItem } from "./interface";
+import { IFileTreeItem } from './interface';
 
 /** get line array. these lines are trimLeft with their common beginning substring. */
-function getLines (text: string = '') {
+function getLines(text: string = '') {
   //  split selected text into separate lines
   //  empty lines are ignored
-  const lines = text.split('\n').filter(line => line.trim() !== '');
+  const lines = text.split('\n').filter((line) => line.trim() !== '');
   if (lines.length <= 1) {
     return lines;
   }
 
   const first = lines[0];
   let commonSize = 0;
-  for(let i = 1; i < first.length; i++) {
+  for (let i = 1; i < first.length; i++) {
     if (first[i - 1] === ' ') {
       break;
     }
     const substr = first.substr(0, i);
-    if (lines.every(line => line.startsWith(substr))) {
+    if (lines.every((line) => line.startsWith(substr))) {
       commonSize = i;
     } else {
       break;
     }
   }
   if (commonSize > 0) {
-    return lines.map(line => line.substr(commonSize - 1).trimLeft());
+    return lines.map((line) => line.substr(commonSize - 1).trimLeft());
   }
   return lines;
 }
 
-export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[] {
+export function formatFileTreeItemsFromText(
+  text: string = ''
+): IFileTreeItem[] {
   const lines = getLines(text);
 
   //  find common hash
@@ -91,7 +93,7 @@ export function formatFileTreeItemsFromText (text: string = ''): IFileTreeItem[]
             sibling.isLast = true;
             lastMap[sibling.depth] = true;
           }
-          siblingIndex --;
+          siblingIndex--;
           sibling = list[siblingIndex];
         }
         item = {
