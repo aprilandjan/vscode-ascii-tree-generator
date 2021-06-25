@@ -2,8 +2,8 @@ import * as assert from "assert";
 import * as fs from "fs";
 import * as path from "path";
 
-import { formatFileTreeItemsFromText } from "../../lib/text";
-import { IFileTreeItem } from "../../lib/interface";
+import { formatFileTreeItemsFromText } from "../../../lib/text";
+import { IFileTreeItem } from "../../../lib/interface";
 
 function findTreeItem(list: IFileTreeItem[], name: string) {
     return list.find((item) => item.name === name);

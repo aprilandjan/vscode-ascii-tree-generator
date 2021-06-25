@@ -4,8 +4,8 @@ import * as path from "path";
 import {
     listDirectory,
     formatFileTreeItemsFromDirectory,
-} from "../../lib/directory";
-import { IFileStat } from "../../lib/interface";
+} from "../../../lib/directory";
+import { IFileStat } from "../../../lib/interface";
 
 function findFileByName(files: IFileStat[] = [], name: string) {
     let result: IFileStat | undefined = undefined;

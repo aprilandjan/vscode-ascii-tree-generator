@@ -1,0 +1,7 @@
+node_modules
+.vscode-test
+out
+fixtures
+*.log
+azure-pipelines.yml
+yarn.lock

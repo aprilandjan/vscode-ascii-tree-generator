@@ -2,10 +2,10 @@ import * as assert from "assert";
 import * as fs from "fs";
 import * as path from "path";
 
-import { formatFileTreeItemsFromDirectory } from "../../lib/directory";
-import { formatFileTreeItemsFromText } from "../../lib/text";
-import { generate } from "../../lib/generator";
-import { setTestMode } from "../../utils";
+import { formatFileTreeItemsFromDirectory } from "../../../lib/directory";
+import { formatFileTreeItemsFromText } from "../../../lib/text";
+import { generate } from "../../../lib/generator";
+import { setTestMode } from "../../../utils";
 
 suite("lib/generator functions", function () {
     this.timeout(120000);
