@@ -22,7 +22,7 @@ function findFileByName(files: IFileStat[] = [], name: string) {
 suite('lib/directory functions', function () {
   this.timeout(120000);
 
-  const rootDir: string = path.resolve(__dirname, '../../../fixtures/root');
+  const rootDir: string = path.resolve(__dirname, '../../../../fixtures/root');
 
   test('should correctly list directory', async () => {
     const files = await listDirectory(rootDir);

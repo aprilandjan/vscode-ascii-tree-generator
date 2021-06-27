@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { IVsCodeConfig } from './lib/interface';
 
 export function getConfig(): IVsCodeConfig {
-  let config: IVsCodeConfig = {
+  const config: IVsCodeConfig = {
     ignore: ['node_modules'],
     rootCharCode: vscode.workspace
       .getConfiguration()

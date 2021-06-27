@@ -5,7 +5,7 @@ import { defaultCharset } from './lib/generator';
 import { ICharset, IVsCodeConfig } from './lib/interface';
 import { getConfig } from './config';
 
-let isInTestMode: boolean = false;
+let isInTestMode = false;
 
 /**
  * get user file eol setting. if not specific, behave defaultly according platform
@@ -102,8 +102,8 @@ export function getCharCodesFromConfig(): ICharset {
   if (isInTestMode) {
     return defaultCharset;
   }
-  let config: IVsCodeConfig = getConfig();
-  let charset: ICharset = {
+  const config: IVsCodeConfig = getConfig();
+  const charset: ICharset = {
     root: validateCharCode(config.rootCharCode, defaultCharset.root),
     child: validateCharCode(config.childCharCode, defaultCharset.child),
     last: validateCharCode(config.lastCharCode, defaultCharset.last),

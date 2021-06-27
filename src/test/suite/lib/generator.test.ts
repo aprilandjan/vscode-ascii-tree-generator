@@ -11,17 +11,17 @@ suite('lib/generator functions', function () {
   this.timeout(120000);
   // Enable test mode to override user defined chars with defaults
   setTestMode();
-  const rootDir: string = path.resolve(__dirname, '../../../fixtures/root');
+  const rootDir: string = path.resolve(__dirname, '../../../../fixtures/root');
   const rootText = fs.readFileSync(
-    path.join(__dirname, '../../../fixtures/root.txt'),
+    path.join(__dirname, '../../../../fixtures/root.txt'),
     'utf8'
   );
   const rootSorted = fs.readFileSync(
-    path.join(__dirname, '../../../fixtures/root-sorted.txt'),
+    path.join(__dirname, '../../../../fixtures/root-sorted.txt'),
     'utf8'
   );
   const rootFillLeft = fs.readFileSync(
-    path.join(__dirname, '../../../fixtures/root-fill-left.txt'),
+    path.join(__dirname, '../../../../fixtures/root-fill-left.txt'),
     'utf8'
   );
 
@@ -36,7 +36,7 @@ suite('lib/generator functions', function () {
 
   test('should correctly generate tree from hash text', () => {
     const text = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/hash.txt'),
+      path.join(__dirname, '../../../../fixtures/hash.txt'),
       'utf8'
     );
     const items = formatFileTreeItemsFromText(text);
@@ -46,7 +46,7 @@ suite('lib/generator functions', function () {
 
   test('should correctly generate tree from indent text', () => {
     const text = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/indent.txt'),
+      path.join(__dirname, '../../../../fixtures/indent.txt'),
       'utf8'
     );
     const items = formatFileTreeItemsFromText(text);
@@ -56,7 +56,7 @@ suite('lib/generator functions', function () {
 
   test('should correctly generate tree from hash-indented text if fill-left', () => {
     const text = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/hash-indented.txt'),
+      path.join(__dirname, '../../../../fixtures/hash-indented.txt'),
       'utf8'
     );
     const items = formatFileTreeItemsFromText(text);
@@ -66,7 +66,7 @@ suite('lib/generator functions', function () {
 
   test('should correctly generate tree from hash-indented text if not fill-left', () => {
     const text = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/hash-indented.txt'),
+      path.join(__dirname, '../../../../fixtures/hash-indented.txt'),
       'utf8'
     );
     const items = formatFileTreeItemsFromText(text);

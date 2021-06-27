@@ -10,7 +10,7 @@ export const defaultCharset: ICharset = {
   blank: String.fromCharCode(32), // ' ',
 };
 
-function createTreeString(start: string, fill: string, size: number = 3) {
+function createTreeString(start: string, fill: string, size = 3) {
   let result = '';
   for (let i = 0; i < size; i++) {
     if (i === 0) {

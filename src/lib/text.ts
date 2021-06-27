@@ -1,7 +1,7 @@
 import { IFileTreeItem } from './interface';
 
 /** get line array. these lines are trimLeft with their common beginning substring. */
-function getLines(text: string = '') {
+function getLines(text = '') {
   //  split selected text into separate lines
   //  empty lines are ignored
   const lines = text.split('\n').filter((line) => line.trim() !== '');
@@ -28,9 +28,7 @@ function getLines(text: string = '') {
   return lines;
 }
 
-export function formatFileTreeItemsFromText(
-  text: string = ''
-): IFileTreeItem[] {
+export function formatFileTreeItemsFromText(text = ''): IFileTreeItem[] {
   const lines = getLines(text);
 
   //  find common hash
@@ -49,8 +47,8 @@ export function formatFileTreeItemsFromText(
     let item: IFileTreeItem;
     //  symbol
     let symbol = matched[0];
-    let name = line.slice(symbol.length).trim();
-    let hash = symbol.match(/#+/);
+    const name = line.slice(symbol.length).trim();
+    const hash = symbol.match(/#+/);
     let left = 0;
     //  if contains hash, read hash as its depth symbol
     if (hash) {
@@ -58,7 +56,7 @@ export function formatFileTreeItemsFromText(
       symbol = hash[0];
     }
     let depth = symbol.length;
-    let prev = list[index - 1];
+    const prev = list[index - 1];
     if (depth === 0) {
       depth = 1;
     }
@@ -86,7 +84,7 @@ export function formatFileTreeItemsFromText(
         prev.isLast = true;
         let siblingIndex = index - 1;
         let sibling = list[siblingIndex];
-        let lastMap: any = {};
+        const lastMap: any = {};
         while (siblingIndex >= 0 && sibling.depth !== depth) {
           //  make sure the previous lines are properly set 'isLast'
           if (sibling.depth > depth && !lastMap[sibling.depth]) {

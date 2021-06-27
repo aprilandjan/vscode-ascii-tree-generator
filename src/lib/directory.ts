@@ -70,9 +70,9 @@ export async function listDirectory(
   if (sort) {
     files = sortFilesLikeVSCode(files);
   }
-  let remainingDepth = maxDepth - 1;
+  const remainingDepth = maxDepth - 1;
   if (remainingDepth > 0) {
-    for (let file of files) {
+    for (const file of files) {
       if (file.isDirectory) {
         const subFiles = await listDirectory(file.absolutePath, {
           ...config,
