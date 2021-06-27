@@ -1,14 +1,6 @@
-import { IFileTreeItem, ICharset, IFormatOptions } from './interface';
-import { getUserEOL, getCharCodesFromConfig } from '../utils';
-
-export const defaultCharset: ICharset = {
-  root: String.fromCharCode(46), // '.',
-  child: String.fromCharCode(9500), // '├',
-  last: String.fromCharCode(9492), // '└',
-  parent: String.fromCharCode(9474), // '|',
-  dash: String.fromCharCode(9472), // '─',
-  blank: String.fromCharCode(32), // ' ',
-};
+import { EOL } from 'os';
+import { IFileTreeItem, IFormatOptions } from './interface';
+import { defaultCharset } from '../utils';
 
 function createTreeString(start: string, fill: string, size = 3) {
   let result = '';
@@ -25,8 +17,8 @@ function createTreeString(start: string, fill: string, size = 3) {
 /** generate tree string */
 export function generate(items: IFileTreeItem[], options: IFormatOptions = {}) {
   const {
-    eol = getUserEOL(),
-    charset = getCharCodesFromConfig(),
+    eol = EOL,
+    charset = defaultCharset,
     fillLeft = true,
   } = options;
   let leftSpace = '';

@@ -1,11 +1,24 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { defaultCharset } from './lib/generator';
 import { ICharset, IVsCodeConfig } from './lib/interface';
 import { getConfig } from './config';
 
 let isInTestMode = false;
+
+export const defaultCharset: ICharset = {
+  root: String.fromCharCode(46), // '.',
+  child: String.fromCharCode(9500), // '├',
+  last: String.fromCharCode(9492), // '└',
+  parent: String.fromCharCode(9474), // '|',
+  dash: String.fromCharCode(9472), // '─',
+  blank: String.fromCharCode(32), // ' ',
+};
+
+export const defaultDirectoryIgnore: string[] = [
+  'node_modules',
+  '.git',
+];
 
 /**
  * get user file eol setting. if not specific, behave defaultly according platform
@@ -112,6 +125,14 @@ export function getCharCodesFromConfig(): ICharset {
     blank: validateCharCode(config.blankCharCode, defaultCharset.blank),
   };
   return charset;
+}
+
+export function getDirectoryIgnoreFromConfig(): string[] {
+  const { directoryIgnore }: IVsCodeConfig = getConfig();
+  if (Array.isArray(directoryIgnore)) {
+    return directoryIgnore.filter(item => typeof item === 'string');
+  }
+  return defaultDirectoryIgnore;
 }
 
 function validateCharCode(

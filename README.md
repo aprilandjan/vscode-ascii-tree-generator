@@ -51,13 +51,15 @@ In all cases, you can revert formatting tree strings back to their preformatted 
 
 ### Generate Tree String for Directory
 
-In addition to being able to format pre-formatted tree strings, you may also generate tree strings for directories inside your current workspace (directories appearing in `Explorer` tab). To do so, right-click on any directory within the `Explorer` tab and select the `Generate Tree String for Directory` menu option. An example is shown below.
+In addition to being able to format pre-formatted tree strings, you may also generate tree strings for directories inside your current workspace (directories appearing in `Explorer` tab). To do so, right-click on any directory, or empty space, within the `Explorer` tab and select the `Generate Tree String for Directory` menu option. An example is shown below.
 
 ![Generate Tree String for Directory](./images/directory.gif)
 
 #### Addendum
 
 The walking process through files is performed asynchronously. Therefore, selecting heavily-nested folders (e.g. `node_modules`) will directly affect performance speed.
+
+By default, `node_modules` and `.git` are ignored while generating tree string for directories. However, this can be customized by setting `asciiTreeGenerator.directoryIgnore` in configurations.
 
 ## Configuration
 

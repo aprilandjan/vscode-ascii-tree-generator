@@ -3,7 +3,7 @@ import { IVsCodeConfig } from './lib/interface';
 
 export function getConfig(): IVsCodeConfig {
   const config: IVsCodeConfig = {
-    ignore: ['node_modules'],
+    directoryIgnore: vscode.workspace.getConfiguration().get<string[]>('asciiTreeGenerator.directoryIgnore'),
     rootCharCode: vscode.workspace
       .getConfiguration()
       .get<number>('asciiTreeGenerator.rootElement'),

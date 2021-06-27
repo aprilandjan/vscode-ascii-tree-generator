@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as assert from 'assert';
-import { revertTreeString } from '../../utils';
+import { revertTreeString } from '../utils';
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite('Extension Tests', function () {
@@ -14,11 +14,11 @@ suite('Extension Tests', function () {
   // });
   test('revert tree string to text', function () {
     const rootText = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/root.txt'),
+      path.join(__dirname, '../../fixtures/root.txt'),
       'utf8'
     );
     const rootReverted = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/root-reverted.txt'),
+      path.join(__dirname, '../../fixtures/root-reverted.txt'),
       'utf8'
     );
     const reverted = revertTreeString(rootText);
@@ -35,11 +35,11 @@ suite('Extension Tests', function () {
   // https://github.com/aprilandjan/ascii-tree-generator/pull/11
   test('revert more-depth tree string to text', function () {
     const origin = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/more-depth-reverted.txt'),
+      path.join(__dirname, '../../fixtures/more-depth-reverted.txt'),
       'utf8'
     );
     const treeString = fs.readFileSync(
-      path.join(__dirname, '../../../fixtures/more-depth.txt'),
+      path.join(__dirname, '../../fixtures/more-depth.txt'),
       'utf8'
     );
     const reverted = revertTreeString(treeString);

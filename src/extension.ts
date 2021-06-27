@@ -6,7 +6,7 @@ import * as path from 'path';
 
 import { formatFileTreeItemsFromDirectory } from './lib/directory';
 import { generate } from './lib/generator';
-import { getUserEOL, createWebview, revertTreeString } from './utils';
+import { getUserEOL, createWebview, revertTreeString, getCharCodesFromConfig, getDirectoryIgnoreFromConfig } from './utils';
 import { formatFileTreeItemsFromText } from './lib/text';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -62,11 +62,10 @@ export function activate(context: vscode.ExtensionContext) {
       const root =
         path.relative(rootWorkspace.uri.fsPath, target.fsPath) || '.';
 
-      // Todo: read plugin configuration
       const items = await formatFileTreeItemsFromDirectory(target!.fsPath, {
         maxDepth: Number.MAX_VALUE,
         sort: true,
-        ignore: [],
+        ignore: getDirectoryIgnoreFromConfig(),
       });
       const text = generate(items, {
         eol: getUserEOL(),
@@ -102,7 +101,7 @@ export function activate(context: vscode.ExtensionContext) {
     const items = formatFileTreeItemsFromText(rawText);
     const text = generate(items, {
       eol: editor.document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n',
-      // Todo: read plugin configurations
+      charset: getCharCodesFromConfig(),
     });
     editor.edit((edit) => {
       edit.replace(editor.selection, text);

@@ -2,8 +2,8 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { formatFileTreeItemsFromText } from '../../../lib/text';
-import { IFileTreeItem } from '../../../lib/interface';
+import { formatFileTreeItemsFromText } from '../../lib/text';
+import { IFileTreeItem } from '../../lib/interface';
 
 function findTreeItem(list: IFileTreeItem[], name: string) {
   return list.find((item) => item.name === name);
@@ -16,7 +16,7 @@ suite('lib/text functions', function () {
     let items: IFileTreeItem[];
     setup(function () {
       const text = fs.readFileSync(
-        path.join(__dirname, '../../../../fixtures/hash.txt'),
+        path.join(__dirname, '../../../fixtures/hash.txt'),
         'utf8'
       );
       items = formatFileTreeItemsFromText(text);
@@ -48,7 +48,7 @@ suite('lib/text functions', function () {
     let items: IFileTreeItem[];
     setup(() => {
       const text = fs.readFileSync(
-        path.join(__dirname, '../../../../fixtures/indent.txt'),
+        path.join(__dirname, '../../../fixtures/indent.txt'),
         'utf8'
       );
       items = formatFileTreeItemsFromText(text);
@@ -80,7 +80,7 @@ suite('lib/text functions', function () {
     let items: IFileTreeItem[];
     setup(() => {
       const text = fs.readFileSync(
-        path.join(__dirname, '../../../../fixtures/hash-indented.txt'),
+        path.join(__dirname, '../../../fixtures/hash-indented.txt'),
         'utf8'
       );
       items = formatFileTreeItemsFromText(text);
@@ -118,7 +118,7 @@ suite('lib/text functions', function () {
     let items: IFileTreeItem[];
     setup(() => {
       const text = fs.readFileSync(
-        path.join(__dirname, '../../../../fixtures/hash-common-beginning.txt'),
+        path.join(__dirname, '../../../fixtures/hash-common-beginning.txt'),
         'utf8'
       );
       items = formatFileTreeItemsFromText(text);

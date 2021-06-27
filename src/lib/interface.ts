@@ -36,7 +36,7 @@ export interface ICharset {
 
 //  the VS code config interface
 export interface IVsCodeConfig {
-  ignore: string[];
+  directoryIgnore: string[] | undefined;
   rootCharCode: number | undefined;
   childCharCode: number | undefined;
   lastCharCode: number | undefined;

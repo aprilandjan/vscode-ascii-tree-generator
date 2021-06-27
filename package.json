@@ -63,6 +63,14 @@
             "type": "integer",
             "default": 32,
             "description": "For blank / space elements (0-65535; Default: 32 ' ')"
+          },
+          "asciiTreeGenerator.directoryIgnore": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": ["node_modules", ".git"],
+            "description": "the glob patterns of ignored path while generate tree string for directory"
           }
         }
       }
