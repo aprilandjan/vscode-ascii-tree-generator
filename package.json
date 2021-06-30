@@ -70,7 +70,12 @@
               "type": "string"
             },
             "default": ["node_modules", ".git"],
-            "description": "the glob patterns of ignored path while generate tree string for directory"
+            "description": "The glob patterns of ignored path while generate tree string for directory"
+          },
+          "asciiTreeGenerator.directoryMaxDepth": {
+            "type": "integer",
+            "default": 0,
+            "description": "The max walk-through depths while generate tree string for directory. Set to 0 means no limitation."
           }
         }
       }

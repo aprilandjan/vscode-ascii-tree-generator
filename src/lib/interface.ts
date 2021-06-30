@@ -36,6 +36,7 @@ export interface ICharset {
 
 //  the VS code config interface
 export interface IVsCodeConfig {
+  directoryMaxDepth: number | undefined;
   directoryIgnore: string[] | undefined;
   rootCharCode: number | undefined;
   childCharCode: number | undefined;

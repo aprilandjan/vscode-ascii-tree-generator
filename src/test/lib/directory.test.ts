@@ -41,6 +41,14 @@ suite('lib/directory functions', function () {
     assert(findFileByName(files, '.env') === undefined);
   });
 
+  test('should correctly list directories when recursively into depth 3', async () => {
+    const files = await listDirectory(rootDir, {
+      maxDepth: 3,
+    });
+    assert(findFileByName(files, 'img'));
+    assert(findFileByName(files, 'logo.png') === undefined);
+  });
+
   test('should correctly list directory when sort', async () => {
     const files = await listDirectory(rootDir, {
       sort: true,
@@ -53,14 +61,6 @@ suite('lib/directory functions', function () {
       '.env',
       'README.md',
     ]);
-  });
-
-  test('should correctly list directories when recursively into depth 3', async () => {
-    const files = await listDirectory(rootDir, {
-      maxDepth: 3,
-    });
-    assert(findFileByName(files, 'img'));
-    assert(findFileByName(files, 'logo.png') === undefined);
   });
 
   test('should correctly format file tree items', async () => {

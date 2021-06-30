@@ -115,8 +115,8 @@ export function getCharCodesFromConfig(): ICharset {
   if (isInTestMode) {
     return defaultCharset;
   }
-  const config: IVsCodeConfig = getConfig();
-  const charset: ICharset = {
+  const config = getConfig();
+  const charset = {
     root: validateCharCode(config.rootCharCode, defaultCharset.root),
     child: validateCharCode(config.childCharCode, defaultCharset.child),
     last: validateCharCode(config.lastCharCode, defaultCharset.last),
@@ -133,6 +133,14 @@ export function getDirectoryIgnoreFromConfig(): string[] {
     return directoryIgnore.filter(item => typeof item === 'string');
   }
   return defaultDirectoryIgnore;
+}
+
+export function getDirectoryMaxDepthFromConfig(): number {
+  const { directoryMaxDepth } = getConfig();
+  if (directoryMaxDepth === 0 || !Number.isInteger(directoryMaxDepth)) {
+    return Number.MAX_SAFE_INTEGER;
+  }
+  return directoryMaxDepth!;
 }
 
 function validateCharCode(

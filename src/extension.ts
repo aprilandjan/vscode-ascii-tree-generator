@@ -6,7 +6,7 @@ import * as path from 'path';
 
 import { formatFileTreeItemsFromDirectory } from './lib/directory';
 import { generate } from './lib/generator';
-import { getUserEOL, createWebview, revertTreeString, getCharCodesFromConfig, getDirectoryIgnoreFromConfig } from './utils';
+import { getUserEOL, createWebview, revertTreeString, getCharCodesFromConfig, getDirectoryIgnoreFromConfig, getDirectoryMaxDepthFromConfig } from './utils';
 import { formatFileTreeItemsFromText } from './lib/text';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -63,9 +63,9 @@ export function activate(context: vscode.ExtensionContext) {
         path.relative(rootWorkspace.uri.fsPath, target.fsPath) || '.';
 
       const items = await formatFileTreeItemsFromDirectory(target!.fsPath, {
-        maxDepth: Number.MAX_VALUE,
-        sort: true,
         ignore: getDirectoryIgnoreFromConfig(),
+        maxDepth: getDirectoryMaxDepthFromConfig(),
+        sort: true,
       });
       const text = generate(items, {
         eol: getUserEOL(),
