@@ -2,6 +2,7 @@ import * as rawGlob from 'glob';
 import * as fs from 'fs';
 import * as path from 'path';
 import { promisify } from 'util';
+import { getCommentInFile } from '../utils';
 import { IFileStat, IFileTreeItem, IListDirectoryConfig } from './interface';
 
 const glob = promisify(rawGlob);
@@ -14,19 +15,25 @@ const readStat = promisify(fs.stat);
  */
 async function getFileStat(
   name: string,
-  dir?: string
+  dir?: string,
+  enableCommentInFile?: boolean
 ): Promise<IFileStat | null> {
   const absolutePath = path.join(dir || process.cwd(), name);
   let stat: fs.Stats;
+  let comment: string | undefined;
   try {
     stat = await readStat(absolutePath);
   } catch (e) {
     return null;
   }
+  if (enableCommentInFile) {
+    comment = getCommentInFile(name, dir);
+  }
   return {
     name,
     absolutePath,
     stat,
+    comment,
     isDirectory: stat.isDirectory(),
     children: [],
   };
@@ -63,7 +70,7 @@ export async function listDirectory(
     ignore,
   });
   let files: IFileStat[] = (await Promise.all(
-    fileNames.map((item) => getFileStat(item, dir))
+    fileNames.map((item) => getFileStat(item, dir, config?.enableCommentInFile))
   )) as IFileStat[];
   files = files.filter((item) => item !== null);
   //  sort
@@ -101,6 +108,7 @@ export async function formatFileTreeItemsFromDirectory(
       const item = {
         name: f.name,
         isLast: index === list.length - 1,
+        comment: f.comment,
         depth: parent ? parent.depth + 1 : 0,
         parent,
       };
