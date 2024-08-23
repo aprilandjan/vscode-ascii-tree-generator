@@ -3,7 +3,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { ICharset, IVsCodeConfig } from './lib/interface';
 import { getConfig } from './config';
-
+import * as parseGitignore from 'parse-gitignore';
+const ONE_DEEP_CHARACTER_LENGTH = 4;
 let isInTestMode = false;
 
 export const defaultCharset: ICharset = {
@@ -33,6 +34,88 @@ export function getUserEOL() {
     return process.platform === 'win32' ? '\r\n' : '\n';
   }
   return eol;
+}
+/**
+ * get comment in file
+ * @param name file name
+ * @param dir file dir path
+ * @returns common string
+ */
+export function getCommentInFile(
+  name: string,
+  dir?: string
+): string | undefined {
+  const absolutePath = path.join(dir || process.cwd(), name);
+  try {
+    const fileString = getStringFromFile(absolutePath);
+    const commonString = getCommentInFileString(fileString);
+    return commonString;
+  }
+  catch (e) {
+    return undefined;
+  }
+}
+/**
+ * get tree string item character length
+ * @param deep tree string item deep
+ * @param name file name
+ * @returns character length
+ */
+export function getTreeStringItemCharacterLength(deep: number, name: string): number {
+  return deep * ONE_DEEP_CHARACTER_LENGTH + calculateStringLength(name);
+}
+
+export function checkCharacterLength(char: string) {
+  const regexChinese = /[\u4e00-\u9fa5]/;
+  if (regexChinese.test(char)) {
+    return 2;
+  }
+  else {
+    return 1;
+  }
+}
+
+export function calculateStringLength(str: string) {
+  let length = 0;
+  for (let i = 0; i < str.length; i++) {
+    length += checkCharacterLength(str[i]);
+  }
+  return length;
+}
+
+/**
+ * get comment in file string
+ * @param fileString file string
+ * @returns comment
+ */
+export function getCommentInFileString(fileString: string): string | undefined {
+  // get comment from tags @fileoverview @file @overview 
+  const fileRegex = /@(file|fileoverview|overview)\s+(.+)/;
+  const match = fileString.match(fileRegex);
+  if (match) {
+    return match[2].trim();
+  } else {
+    return undefined;
+  }
+}
+
+export function isPathExists(p: string): boolean {
+  try {
+    fs.accessSync(p);
+  } catch (err) {
+    return false;
+  }
+  return true;
+}
+
+export function getStringFromFile(filePath: string): string {
+  if (!isPathExists(filePath)) return '';
+  try {
+    const fileString = fs.readFileSync(filePath, "utf8");
+    return fileString;
+  } catch (e) {
+    return '';
+  }
 }
 
 /**
@@ -127,10 +210,44 @@ export function getCharCodesFromConfig(): ICharset {
   return charset;
 }
 
+export function getEnableCommentInFileFromConfig(): boolean {
+  const { enableCommentInFile } = getConfig();
+  return enableCommentInFile || false;
+}
+
+export function getDirectoryIgnoreFromGitignore(): string[] | undefined {
+  const workspaces = vscode.workspace.workspaceFolders;
+  const rootWorkspace: vscode.WorkspaceFolder | undefined = workspaces
+    ? workspaces[0]
+    : undefined;
+  if (!rootWorkspace) {
+    return undefined;
+  }
+  const gitignorePath = path.join(
+    rootWorkspace.uri.fsPath,
+    '.gitignore'
+  );
+  if (!isPathExists(gitignorePath)) {
+    return undefined;
+  }
+  try {
+    const gitignoreContent = getStringFromFile(gitignorePath);
+    const gitignore = parseGitignore.parse(gitignoreContent).patterns;
+    return gitignore;
+  }
+  catch (e) {
+    return undefined;
+  }
+}
+
 export function getDirectoryIgnoreFromConfig(): string[] {
   const { directoryIgnore }: IVsCodeConfig = getConfig();
-  if (Array.isArray(directoryIgnore)) {
+  const directoryIgnoreInGitignore = getDirectoryIgnoreFromGitignore();
+  if (Array.isArray(directoryIgnore) && directoryIgnore.length > 0) {
     return directoryIgnore.filter(item => typeof item === 'string');
+  }
+  if (Array.isArray(directoryIgnoreInGitignore) && directoryIgnoreInGitignore.length > 0) {
+    return directoryIgnoreInGitignore.filter(item => typeof item === 'string');
   }
   return defaultDirectoryIgnore;
 }

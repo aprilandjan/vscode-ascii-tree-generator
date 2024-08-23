@@ -4,6 +4,7 @@ import { IVsCodeConfig } from './lib/interface';
 export function getConfig(): IVsCodeConfig {
   const config: IVsCodeConfig = {
     directoryIgnore: vscode.workspace.getConfiguration().get<string[]>('asciiTreeGenerator.directoryIgnore'),
+    enableCommentInFile: vscode.workspace.getConfiguration().get<boolean>('asciiTreeGenerator.enableCommentInFile'),
     directoryMaxDepth: vscode.workspace.getConfiguration().get<number>('asciiTreeGenerator.directoryMaxDepth'),
     rootCharCode: vscode.workspace
       .getConfiguration()

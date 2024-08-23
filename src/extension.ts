@@ -6,7 +6,7 @@ import * as path from 'path';
 
 import { formatFileTreeItemsFromDirectory } from './lib/directory';
 import { generate } from './lib/generator';
-import { getUserEOL, createWebview, revertTreeString, getCharCodesFromConfig, getDirectoryIgnoreFromConfig, getDirectoryMaxDepthFromConfig } from './utils';
+import { getUserEOL, createWebview, revertTreeString, getCharCodesFromConfig, getDirectoryIgnoreFromConfig, getDirectoryMaxDepthFromConfig, getEnableCommentInFileFromConfig } from './utils';
 import { formatFileTreeItemsFromText } from './lib/text';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -28,10 +28,11 @@ export function activate(context: vscode.ExtensionContext) {
     //	if no selected resource found, then try to get workspace root path
     const target: vscode.Uri = resource || rootWorkspace.uri;
     const root = path.relative(rootWorkspace.uri.fsPath, target.fsPath) || '.';
-
+    const enableCommentInFile = getEnableCommentInFileFromConfig();
     // Todo: read plugin configuration
     const items = await formatFileTreeItemsFromDirectory(target!.fsPath, {
       maxDepth: Number.MAX_VALUE,
+      enableCommentInFile,
       sort: true,
       ignore: [],
     });
@@ -61,10 +62,10 @@ export function activate(context: vscode.ExtensionContext) {
       const target: vscode.Uri = resource || rootWorkspace.uri;
       const root =
         path.relative(rootWorkspace.uri.fsPath, target.fsPath) || '.';
-
       const items = await formatFileTreeItemsFromDirectory(target!.fsPath, {
         ignore: getDirectoryIgnoreFromConfig(),
         maxDepth: getDirectoryMaxDepthFromConfig(),
+        enableCommentInFile: getEnableCommentInFileFromConfig(),
         sort: true,
       });
       const text = generate(items, {

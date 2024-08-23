@@ -34,6 +34,11 @@
       {
         "title": "Ascii Tree Generator Configuration",
         "properties": {
+          "asciiTreeGenerator.enableCommentInFile": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable comment in file by @file"
+          },
           "asciiTreeGenerator.rootElement": {
             "type": "integer",
             "default": 46,
@@ -69,7 +74,7 @@
             "items": {
               "type": "string"
             },
-            "default": ["node_modules", ".git"],
+            "default": [],
             "description": "The glob patterns of ignored path while generate tree string for directory"
           },
           "asciiTreeGenerator.directoryMaxDepth": {
@@ -136,6 +141,7 @@
     "@types/glob": "^7.1.1",
     "@types/mocha": "8",
     "@types/node": "12",
+    "@types/parse-gitignore": "^1.0.2",
     "@types/vscode": "^1.50.0",
     "@typescript-eslint/eslint-plugin": "^4.16.0",
     "@typescript-eslint/parser": "^4.16.0",
@@ -146,6 +152,7 @@
     "vscode-test": "^1.5.2"
   },
   "dependencies": {
-    "glob": "^7.1.3"
+    "glob": "^7.1.3",
+    "parse-gitignore": "^2.0.0"
   }
 }

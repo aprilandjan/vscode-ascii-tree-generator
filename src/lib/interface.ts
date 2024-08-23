@@ -4,6 +4,7 @@ export interface IListDirectoryConfig {
   ignore?: string[];
   sort?: boolean;
   maxDepth?: number;
+  enableCommentInFile?: boolean;
 }
 
 export interface IFileStat {
@@ -11,6 +12,7 @@ export interface IFileStat {
   absolutePath: string;
   stat: Stats;
   isDirectory: boolean;
+  comment?: string,
   children: IFileStat[];
   parent?: IFileStat;
 }
@@ -21,6 +23,7 @@ export interface IFileTreeItem {
   depth: number;
   // left space width
   left?: number;
+  comment?: string;
   parent?: IFileTreeItem;
 }
 
@@ -44,6 +47,7 @@ export interface IVsCodeConfig {
   parentCharCode: number | undefined;
   dashCharCode: number | undefined;
   blankCharCode: number | undefined;
+  enableCommentInFile: boolean | undefined;
 }
 
 //  format tree string options

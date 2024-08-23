@@ -1,7 +1,8 @@
 import { EOL } from 'os';
 import { IFileTreeItem, IFormatOptions } from './interface';
-import { defaultCharset } from '../utils';
-
+import { defaultCharset, getTreeStringItemCharacterLength } from '../utils';
+const DEFAULT_COMMENT_PRE_SPACE = '    ';
+const DEFAULT_COMMENT_PRE_TEXT = '// ';
 function createTreeString(start: string, fill: string, size = 3) {
   let result = '';
   for (let i = 0; i < size; i++) {
@@ -12,6 +13,13 @@ function createTreeString(start: string, fill: string, size = 3) {
     }
   }
   return result + ' ';
+}
+
+function getItemCommentText(maxRight: number, item: IFileTreeItem) {
+  if (!item.comment) return '';
+  const itemRight = getTreeStringItemCharacterLength(item.depth, item.name);
+  const itemRightSpace = maxRight - itemRight;
+  return Array(itemRightSpace).fill(' ').join('') + DEFAULT_COMMENT_PRE_SPACE + DEFAULT_COMMENT_PRE_TEXT + item.comment;
 }
 
 /** generate tree string */
@@ -28,6 +36,9 @@ export function generate(items: IFileTreeItem[], options: IFormatOptions = {}) {
       : 0;
     leftSpace = Array(minLeft).fill(' ').join('');
   }
+  const maxRight = items.length
+    ? Math.max(...items.map((item) => getTreeStringItemCharacterLength(item.depth, item.name) || 0))
+    : 0;
   const lines = items.map((item) => {
     const texts: string[] = [];
     texts.push(
@@ -43,7 +54,7 @@ export function generate(items: IFileTreeItem[], options: IFormatOptions = {}) {
       );
       parent = parent.parent;
     }
-    return leftSpace + texts.join('') + item.name;
+    return leftSpace + texts.join('') + item.name + getItemCommentText(maxRight, item);
   });
   if (charset.root !== '') {
     lines.unshift(leftSpace + charset.root);
