@@ -1,29 +1,21 @@
 # Develop
 
+## Requirements
+
+- Node.js v20+
+- Yarn v1
+
 ## Todo
 
-### Plugin Configuration
+- Improve webview, or use [virtual document](https://code.visualstudio.com/api/extension-guides/virtual-documents)?
 
-|key|default|description|
-|---|---|---|
-|sort|true||
-|ignore|||
-|maxDepth|Number.MAX_VALUE||
-|charset|||
-
-### Improve webview
-
-or use [virtual document](https://code.visualstudio.com/api/extension-guides/virtual-documents)?
-
-### i18n
-
-## VS Code Reference
+## VsCode Extension Help
 
 - [api reference](https://code.visualstudio.com/api/references/vscode-api#Uri)
 - [`when` clause context](https://code.visualstudio.com/docs/getstarted/keybindings#_when-clause-contexts)
 - [`menu` group types](https://code.visualstudio.com/api/references/contribution-points#Sorting-of-groups)
 
-## Other Reference
+## Reference
 
 - <https://en.wikipedia.org/wiki/Tree_(command)>
 - <https://www.geeksforgeeks.org/tree-command-unixlinux/>
