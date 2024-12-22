@@ -5,7 +5,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-## [1.2.5] - 2021-06-24
+## [2.0.0] - 2024-12-22
+
+Finally found my vscode market account😭. This version mainly improve configuration names, docs and coding styles, with some breaking changes([!15](https://github.com/aprilandjan/vscode-ascii-tree-generator/pull/15) by [@mahyarmirrashed](https://github.com/mahyarmirrashed)).
 
 ### Changed
 
