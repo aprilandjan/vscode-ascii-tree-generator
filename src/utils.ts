@@ -15,10 +15,7 @@ export const defaultCharset: ICharset = {
   blank: String.fromCharCode(32), // ' ',
 };
 
-export const defaultDirectoryIgnore: string[] = [
-  'node_modules',
-  '.git',
-];
+export const defaultDirectoryIgnore: string[] = ['node_modules', '.git'];
 
 /**
  * get user file eol setting. if not specific, behave defaultly according platform
@@ -130,7 +127,7 @@ export function getCharCodesFromConfig(): ICharset {
 export function getDirectoryIgnoreFromConfig(): string[] {
   const { directoryIgnore }: IVsCodeConfig = getConfig();
   if (Array.isArray(directoryIgnore)) {
-    return directoryIgnore.filter(item => typeof item === 'string');
+    return directoryIgnore.filter((item) => typeof item === 'string');
   }
   return defaultDirectoryIgnore;
 }

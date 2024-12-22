@@ -69,7 +69,10 @@
             "items": {
               "type": "string"
             },
-            "default": ["node_modules", ".git"],
+            "default": [
+              "node_modules",
+              ".git"
+            ],
             "description": "The glob patterns of ignored path while generate tree string for directory"
           },
           "asciiTreeGenerator.directoryMaxDepth": {
@@ -128,22 +131,23 @@
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "test": "yarn run compile && node ./out/test/runTest.js",
     "lint": "eslint src",
-    "prettify": "prettier --ignore-path .eslintignore '**/*.{js,jsx,ts,tsx,json,html,css,yml}' --write"
+    "prettify": "prettier '**/*.{js,jsx,ts,tsx,json,html,css,yml}' --write",
+    "pretest": "yarn run compile && yarn run lint",
+    "test": "vscode-test"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
-    "@types/mocha": "8",
-    "@types/node": "12",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "16",
     "@types/vscode": "^1.50.0",
-    "@typescript-eslint/eslint-plugin": "^4.16.0",
-    "@typescript-eslint/parser": "^4.16.0",
-    "eslint": "^7.21.0",
-    "mocha": "8",
-    "prettier": "^2.3.1",
-    "typescript": "4",
-    "vscode-test": "^1.5.2"
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
     "glob": "^7.1.3"

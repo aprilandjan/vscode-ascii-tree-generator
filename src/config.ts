@@ -3,8 +3,12 @@ import { IVsCodeConfig } from './lib/interface';
 
 export function getConfig(): IVsCodeConfig {
   const config: IVsCodeConfig = {
-    directoryIgnore: vscode.workspace.getConfiguration().get<string[]>('asciiTreeGenerator.directoryIgnore'),
-    directoryMaxDepth: vscode.workspace.getConfiguration().get<number>('asciiTreeGenerator.directoryMaxDepth'),
+    directoryIgnore: vscode.workspace
+      .getConfiguration()
+      .get<string[]>('asciiTreeGenerator.directoryIgnore'),
+    directoryMaxDepth: vscode.workspace
+      .getConfiguration()
+      .get<number>('asciiTreeGenerator.directoryMaxDepth'),
     rootCharCode: vscode.workspace
       .getConfiguration()
       .get<number>('asciiTreeGenerator.rootElement'),

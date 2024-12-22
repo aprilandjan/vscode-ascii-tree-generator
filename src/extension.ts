@@ -6,7 +6,14 @@ import * as path from 'path';
 
 import { formatFileTreeItemsFromDirectory } from './lib/directory';
 import { generate } from './lib/generator';
-import { getUserEOL, createWebview, revertTreeString, getCharCodesFromConfig, getDirectoryIgnoreFromConfig, getDirectoryMaxDepthFromConfig } from './utils';
+import {
+  getUserEOL,
+  createWebview,
+  revertTreeString,
+  getCharCodesFromConfig,
+  getDirectoryIgnoreFromConfig,
+  getDirectoryMaxDepthFromConfig,
+} from './utils';
 import { formatFileTreeItemsFromText } from './lib/text';
 
 export function activate(context: vscode.ExtensionContext) {

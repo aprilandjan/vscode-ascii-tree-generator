@@ -16,11 +16,7 @@ function createTreeString(start: string, fill: string, size = 3) {
 
 /** generate tree string */
 export function generate(items: IFileTreeItem[], options: IFormatOptions = {}) {
-  const {
-    eol = EOL,
-    charset = defaultCharset,
-    fillLeft = true,
-  } = options;
+  const { eol = EOL, charset = defaultCharset, fillLeft = true } = options;
   let leftSpace = '';
   if (fillLeft) {
     const minLeft = items.length
