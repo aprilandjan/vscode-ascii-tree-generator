@@ -1,6 +1,6 @@
 # [VSCode ASCII Tree Generator](https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator)
 
-[![Build Status](https://dev.azure.com/merlinye/ascii-tree-generator/_apis/build/status/aprilandjan.ascii-tree-generator?branchName=master)](https://dev.azure.com/merlinye/ascii-tree-generator/_build/latest?definitionId=1?branchName=master)
+[![Build Status](https://dev.azure.com/merlinye/ascii-tree-generator/_apis/build/status%2Faprilandjan.vscode-ascii-tree-generator?branchName=master)](https://dev.azure.com/merlinye/ascii-tree-generator/_build/latest?definitionId=3&branchName=master)
 [![Download Count](https://img.shields.io/visual-studio-marketplace/d/aprilandjan.ascii-tree-generator)](https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator)
 [![Download Count](https://img.shields.io/visual-studio-marketplace/i/aprilandjan.ascii-tree-generator)](https://marketplace.visualstudio.com/items?itemName=aprilandjan.ascii-tree-generator)
 
