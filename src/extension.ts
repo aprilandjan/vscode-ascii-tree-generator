@@ -123,16 +123,28 @@ export function activate(context: vscode.ExtensionContext) {
       );
       return;
     }
-    const text = editor.document.getText();
+
+    let text: string;
+    let range: vscode.Range;
+
+    if (editor.selection.isEmpty) {
+      // No selection: revert entire document
+      text = editor.document.getText();
+      const firstLine = editor.document.lineAt(0);
+      const lastLine = editor.document.lineAt(editor.document.lineCount - 1);
+      range = new vscode.Range(
+        0,
+        firstLine.range.start.character,
+        editor.document.lineCount - 1,
+        lastLine.range.end.character
+      );
+    } else {
+      // Selection exists: revert only selected text
+      text = editor.document.getText(editor.selection);
+      range = editor.selection;
+    }
+
     const reverted = revertTreeString(text);
-    const firstLine = editor.document.lineAt(0);
-    const lastLine = editor.document.lineAt(editor.document.lineCount - 1);
-    const range = new vscode.Range(
-      0,
-      firstLine.range.start.character,
-      editor.document.lineCount - 1,
-      lastLine.range.end.character
-    );
     editor.edit((edit) => {
       edit.replace(range, reverted);
     });
