@@ -36,11 +36,10 @@ export function activate(context: vscode.ExtensionContext) {
     const target: vscode.Uri = resource || rootWorkspace.uri;
     const root = path.relative(rootWorkspace.uri.fsPath, target.fsPath) || '.';
 
-    // Todo: read plugin configuration
     const items = await formatFileTreeItemsFromDirectory(target!.fsPath, {
-      maxDepth: Number.MAX_VALUE,
+      maxDepth: getDirectoryMaxDepthFromConfig(),
       sort: true,
-      ignore: [],
+      ignore: getDirectoryIgnoreFromConfig(),
     });
     const text = generate(items, {
       eol: getUserEOL(),
